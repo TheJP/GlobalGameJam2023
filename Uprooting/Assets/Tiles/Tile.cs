@@ -28,7 +28,9 @@ public class Tile : MonoBehaviour
             Invoke(nameof(InvokeTileChanged), 0);
         }
     }
-    
+
+    public bool IsGrowable => Location.y == 0 && IsSolid;
+
     public bool IsDiggable => GetComponent<Dirt>() != null;
     
     public Tile DigTunnel()

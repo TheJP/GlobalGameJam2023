@@ -218,4 +218,15 @@ public class Tilemap : MonoBehaviour
         return false;
         
     }
+    
+    public List<Tile> GetGrowableTiles() {
+        var growableTiles = new List<Tile>();
+        foreach (var tile in tiles.Values) {
+            if (tile.IsGrowable) {
+                growableTiles.Add(tile);
+            }
+        }
+        return growableTiles;
+    }
+
 }
