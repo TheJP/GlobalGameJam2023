@@ -1,3 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/GameUI.uss?fileID=7433441132597879392&amp;guid=296620a57e19a4d498fe8b89c4fff651&amp;type=3#GameUI" />
+    <ui:VisualElement picking-mode="Ignore" class="info-outer">
+        <ui:VisualElement class="info-box">
+            <ui:VisualElement class="actions-box">
+                <ui:Label text="Actions" display-tooltip-when-elided="true" class="actions-labels label" />
+                <ui:Label text="99" display-tooltip-when-elided="true" name="actions" class="actions" />
+            </ui:VisualElement>
+            <ui:VisualElement class="movement-box">
+                <ui:Label text="Movement" display-tooltip-when-elided="true" class="label" />
+                <ui:VisualElement class="progress-outer">
+                    <ui:VisualElement name="movement" class="progress-inner" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
