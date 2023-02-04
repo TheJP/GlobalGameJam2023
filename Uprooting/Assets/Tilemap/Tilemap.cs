@@ -7,8 +7,13 @@ using UnityEngine;
 
 public class Tilemap : MonoBehaviour
 {
-    [SerializeField]
-    private Tile dirtTilePrefab;
+    [field: Header("Prefabs")]
+
+    [field: SerializeField]
+    public Tile DirtTilePrefab { get; private set; }
+
+    [field: SerializeField]
+    public Tile TunnelTilePrefab { get; private set; }
 
     [Header("Tilemap Generation Settings")]
 
@@ -29,7 +34,7 @@ public class Tilemap : MonoBehaviour
         {
             for (int x = 0; x < dirtColumns; ++x)
             {
-                AddTile(x, y, dirtTilePrefab);
+                AddTile(x, y, DirtTilePrefab);
             }
         }
     }
@@ -50,6 +55,7 @@ public class Tilemap : MonoBehaviour
         var position = new Vector3(location.x, location.y, tilePrefab.transform.position.z);
         var tile = Instantiate(tilePrefab, position, tilePrefab.transform.rotation, transform);
         tile.Tilemap = this;
+        tile.Location = location;
 
         tiles.Add(location, tile);
         return true;

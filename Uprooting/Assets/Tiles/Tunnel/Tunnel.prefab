@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4528302, g: 0.24989691, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.8501673, b: 0.59056604, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 6128978914196037039}
   - component: {fileID: 3759269423110796869}
   - component: {fileID: 6579394477530806610}
-  - component: {fileID: 2532750219744076434}
+  - component: {fileID: -1628104588169026926}
   m_Layer: 0
-  m_Name: Dirt
+  m_Name: Tunnel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f53cfcd0ada54b4d82553b8d4a96988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AllowsAirflow>k__BackingField: 0
---- !u!114 &2532750219744076434
+  <AllowsAirflow>k__BackingField: 1
+--- !u!114 &-1628104588169026926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,6 +167,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8091169330728607241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf0fe2e99e9513a4cadd1d59f2943c0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0de3e68b1d0c3694c97e00823cb8f7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

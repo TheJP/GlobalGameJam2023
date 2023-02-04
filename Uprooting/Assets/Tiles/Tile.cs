@@ -8,4 +8,6 @@ public class Tile : MonoBehaviour
     public bool AllowsAirflow { get; set; } = false;
 
     public Tilemap Tilemap { get; set; }
+
+    public (int x, int y) Location { get; set; }
 }
