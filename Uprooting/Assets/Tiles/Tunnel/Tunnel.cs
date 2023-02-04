@@ -11,8 +11,7 @@ public class Tunnel : MonoBehaviour
 
     public void FillWithDirt()
     {
-        var success = tile.Tilemap.RemoveTile(tile.Location) != null;
-        success &= tile.Tilemap.AddTile(tile.Location, tile.Tilemap.DirtTilePrefab);
+        var success = tile.Tilemap.ReplaceTile(tile.Location, tile.Tilemap.DirtTilePrefab);
         Debug.Assert(success, "filling tunnel with dirt failed unexpectedly");
     }
 }
