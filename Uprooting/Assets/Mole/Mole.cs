@@ -10,8 +10,6 @@ using UnityEngine.InputSystem;
 
 public class Mole : MonoBehaviour
 {
-    public Animator animator;    
-    
     [SerializeField]
     [Tooltip("Max speed of mole in units per second.")]
     private float speed = 1f;
