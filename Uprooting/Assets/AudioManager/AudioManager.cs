@@ -22,11 +22,23 @@ public class AudioManager : MonoBehaviour
             s.source.loop   = s.loop;
         }
     }   
-    public void Play (string name)
-        {
-            Sound ps = Array.Find(sounds, AudioSource <= AudioSource.name == name);
 
+    public void PlayAudio (string name)
+    {
+            Sound ps = Array.Find(sounds, sound => sound.name == name);
             
-            //ps.source.Play();
-        }
+            ps.source.Play();
+    }
+    public void StopAudio (string name)
+    {
+        Sound ps = Array.Find(sounds, sound => sound.name == name);
+
+        ps.source.Stop();
+    }
+    public void PauseAudio (string name)
+    {
+        Sound ps = Array.Find(sounds, sound => sound.name == name);
+
+        ps.source.Pause();
+    }
 }

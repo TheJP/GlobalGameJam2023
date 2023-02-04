@@ -253,11 +253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    loop: 0
+  - name: Dig
+    clip: {fileID: 8300000, guid: 81b1b12ccf92e7b41afe2dae9dfa2346, type: 3}
+    volume: 0.381
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &2018612208
 Transform:
