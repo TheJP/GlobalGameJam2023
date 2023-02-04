@@ -23,6 +23,8 @@ public class Tilemap : MonoBehaviour
     [SerializeField]
     private int dirtColumns = 60;
 
+    public event Action<(int x, int y)> TileChanged;
+
     private readonly Dictionary<(int x, int y), Tile> tiles = new();
 
     public void Start()
@@ -61,8 +63,10 @@ public class Tilemap : MonoBehaviour
         var tile = Instantiate(tilePrefab, position, tilePrefab.transform.rotation, transform);
         tile.Tilemap = this;
         tile.Location = location;
+        tile.TileChanged += OnTileChangedInternally;
 
         tiles.Add(location, tile);
+        InvokeTileChangedNextFrame(location);
         return true;
     }
 
@@ -72,7 +76,9 @@ public class Tilemap : MonoBehaviour
         if (tiles.TryGetValue(location, out var tile))
         {
             tiles.Remove(location);
+            tile.TileChanged -= OnTileChangedInternally; // avoid false positive event invocations
             Destroy(tile.gameObject);
+            InvokeTileChangedNextFrame(location);
             return tile;
         }
         else
@@ -125,5 +131,15 @@ public class Tilemap : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void OnTileChangedInternally(Tile tile) => TileChanged?.Invoke(tile.Location);
+
+    private void InvokeTileChangedNextFrame((int x, int y) location) => StartCoroutine(InvokeTileCoroutine(location));
+
+    private IEnumerator InvokeTileCoroutine((int x, int y) location)
+    {
+        yield return null;
+        TileChanged?.Invoke(location);
     }
 }
