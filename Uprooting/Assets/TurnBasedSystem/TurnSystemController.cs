@@ -6,8 +6,6 @@ public class TurnSystemController : MonoBehaviour {
     [SerializeField] private int playerAPPerTurn = 10;
     [SerializeField] private int playerMovementPerTurn = 10;
     
-    public int CurrentMovementLeft { get; private set; }
-
     public int TurnCount { get; private set; } = 0;
     
     /**
@@ -92,6 +90,8 @@ public class TurnSystemController : MonoBehaviour {
     
     #region Movement
     
+    public int CurrentMovementLeft { get; private set; }
+
     /**
      * Returns true if the movement can be performed (enough movement points), false otherwise.
      */

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 
 namespace TurnBasedSystem {
-    public class MovementHandler {
-        public static readonly Dictionary<MovementType, int> MovementCosts = new Dictionary<MovementType, int> {
+    public static class MovementHandler {
+        public static readonly Dictionary<MovementType, int> MovementCosts = new() {
             { MovementType.None, 0},
             {MovementType.Walk, 1},
             {MovementType.Climb, 2},
+            {MovementType.EasyClimb, 1},
         };
     }
     
@@ -13,5 +14,6 @@ namespace TurnBasedSystem {
         None,
         Walk,
         Climb,
+        EasyClimb
     }
 }

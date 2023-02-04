@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using TurnBasedSystem;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +17,8 @@ public class Mole : MonoBehaviour
     [Tooltip("The tile coordinates of the mole's starting position.")]
     private Vector2Int startPosition;
     
+    Vector2 currMoveInputDirection;
+
     private bool isMoving = false;
     private MovementType movementType = MovementType.None;
     private float movementPercent = 0f;
@@ -23,6 +27,7 @@ public class Mole : MonoBehaviour
 
     public void Start() {
         Tilemap.Instance.TryGetTile(startPosition.x, startPosition.y, out currTile);
+        nextTile = currTile;
         transform.position = new Vector3(currTile.Location.x, currTile.Location.y, 0);
     }
 
@@ -34,31 +39,55 @@ public class Mole : MonoBehaviour
     public void FixedUpdate()
     {
         // body.velocity = move * speed;
-        if (isMoving)
-        {
-            movementPercent += Time.deltaTime * speed;
-            if (movementPercent >= 1f)
-            {
-                movementPercent = 0f;
-                currTile = nextTile;
-                isMoving = false;
-            }
-            transform.position = Vector2.Lerp(new Vector2(currTile.Location.x, currTile.Location.y), new Vector2(nextTile.Location.x, nextTile.Location.y), movementPercent);
+        if (isMoving) {
+            HandleMovement();
         }
         
     }
 
+    private void HandleMovement() {
+        movementPercent += Time.deltaTime * speed;
+        if (movementPercent >= 1f) {
+            movementPercent = 0f;
+            currTile = nextTile;
+            isMoving = false;
+            CheckForMovementStart();
+        }
+        transform.position = Vector2.Lerp(new Vector2(currTile.Location.x, currTile.Location.y),
+            new Vector2(nextTile.Location.x, nextTile.Location.y), movementPercent);
+    }
+
     public void OnMove(InputValue value)
     {
+        currMoveInputDirection = value.Get<Vector2>();
+        CheckForMovementStart();
+    }
+
+    private void CheckForMovementStart() {
         if (isMoving) return;
-        var moveDirection = value.Get<Vector2>();
-        var moveDirectionInt = (Mathf.RoundToInt(moveDirection.x), Mathf.RoundToInt(moveDirection.y));
-        currTile.TryGetNeighbour(moveDirectionInt, out var possibleNextTile);
-        if (possibleNextTile == null) return; // TODO what to do when we are at the edge of the map?
+        var moveDirectionInt = (Mathf.RoundToInt(currMoveInputDirection.x), Mathf.RoundToInt(currMoveInputDirection.y));
         
-        if (!Tilemap.Instance.TryGetMovementType(currTile, possibleNextTile, out var movementType))
+        if (!currTile.TryGetNeighbour(moveDirectionInt, out var possibleNextTile))
             return;
-        
+        if (!Tilemap.Instance.TryGetMovementType(currTile, possibleNextTile, out movementType))
+            return;
+        if (!TurnSystemController.Instance.TryDoMovement(movementType))
+            return;
+
+        // now we know we can move
+
+        nextTile = possibleNextTile;
         isMoving = true;
+    }
+
+    private void OnDrawGizmos() {
+        if (currTile == null || nextTile == null)
+            return;
+        if (currTile != nextTile) {
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(nextTile.CenterLocation, Vector3.one * 0.5f);
+        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(currTile.CenterLocation, Vector3.one * 0.5f);
     }
 }

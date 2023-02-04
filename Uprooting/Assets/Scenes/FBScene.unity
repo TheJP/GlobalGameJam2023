@@ -235,6 +235,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 305463465610192943, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: startPosition.x
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 305463465610192943, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: startPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 305463466237938124, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 305463466237938125, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 305463466237938125, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 305463465610192940, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
     - {fileID: 305463465610192941, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}

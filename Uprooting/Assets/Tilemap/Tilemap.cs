@@ -167,12 +167,48 @@ public class Tilemap : MonoBehaviour
         TileChanged?.Invoke(location);
     }
 
+    /// <summary>
+    /// Returns the movement type required to move from the current tile to the next tile.
+    /// Returns false if the movement is not possible or the tiles are not next to each other.
+    /// </summary>
+    /// <param name="currTile">The start Tile of the movement</param>
+    /// <param name="nextTile">The end Tile of the movement</param>
+    /// <param name="movementType">The type of the movement that's needed between these Tile, or None, if movement not possible</param>
+    /// <returns>Returns true if the movement is possible, false if the movement is not possible or the tiles are not next to each other.</returns>
     public bool TryGetMovementType(Tile currTile, Tile nextTile, out MovementType movementType) {
         if (currTile == null || nextTile == null) {
             movementType = MovementType.None;
             return false;
         }
-        movementType = MovementType.Walk; // TODO Figure out movement type
-        return true;
+        
+        if(!AreTilesNeighbour(currTile, nextTile)) {
+            movementType = MovementType.None;
+            return false;
+        }
+
+        if (nextTile.IsWalkable && currTile.IsWalkable) {
+            movementType = MovementType.Walk;
+        }
+        else if(currTile.IsClimbable && nextTile.IsClimbable) {
+            movementType = MovementType.EasyClimb;
+        }
+        else if (!nextTile.IsSolid) {
+            movementType = MovementType.Climb;
+        } else {
+            movementType = MovementType.None;
+        }
+        return movementType != MovementType.None;
+    }
+
+    public bool AreTilesNeighbour(Tile currTile, Tile nextTile) {
+        
+        if (currTile.Location.x == nextTile.Location.x) {
+            return Mathf.Abs(currTile.Location.y - nextTile.Location.y) == 1;
+        }
+        if (currTile.Location.y == nextTile.Location.y) {
+            return Mathf.Abs(currTile.Location.x - nextTile.Location.x) == 1;
+        }
+        return false;
+        
     }
 }

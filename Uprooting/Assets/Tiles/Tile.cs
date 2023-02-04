@@ -58,6 +58,11 @@ public class Tile : MonoBehaviour
     public Tilemap Tilemap { get; set; }
 
     public (int x, int y) Location { get; set; }
+    /// <summary>
+    /// The center location of the tile, in world space.
+    /// </summary>
+    public Vector2 CenterLocation => new Vector2(Location.x + 0.5f, Location.y - 0.5f);
+    
 
     private void InvokeTileChanged() => TileChanged?.Invoke(this);
 
@@ -97,5 +102,15 @@ public class Tile : MonoBehaviour
         direction.y = Math.Max(Math.Min(direction.y, 1), -1);
         Tilemap.Instance.TryGetTile(Location.x + direction.x, Location.y + direction.y, out tile);
         return tile != null;
+    }
+
+    private void OnDrawGizmos() {
+        if (isWalkable) {
+            Gizmos.color = Color.gray;
+        }
+        else {
+            Gizmos.color = Color.clear;
+        }
+        Gizmos.DrawWireCube(CenterLocation, Vector2.one * 0.5f);
     }
 }
