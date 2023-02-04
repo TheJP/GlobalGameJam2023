@@ -44,6 +44,11 @@ public class Tilemap : MonoBehaviour
                 AddTile(x, y, nearMole ? TunnelTilePrefab : DirtTilePrefab);
             }
         }
+
+        foreach (var tile in tiles.Values)
+        {
+            tile.UpdateWalkable();
+        }
     }
 
     public Tile this[int x, int y] => this[(x, y)];
@@ -51,8 +56,8 @@ public class Tilemap : MonoBehaviour
     public bool TryGetTile(int x, int y, out Tile tile) => TryGetTile((x, y), out tile);
     public bool TryGetTile((int x, int y) location, out Tile tile) => tiles.TryGetValue(location, out tile);
 
-    public bool AddTile(int x, int y, Tile tilePrefab) => AddTile((x, y), tilePrefab);
-    public bool AddTile((int x, int y) location, Tile tilePrefab)
+    private bool AddTile(int x, int y, Tile tilePrefab) => AddTile((x, y), tilePrefab);
+    private bool AddTile((int x, int y) location, Tile tilePrefab)
     {
         if (tiles.ContainsKey(location))
         {
@@ -70,14 +75,20 @@ public class Tilemap : MonoBehaviour
         return true;
     }
 
-    public Tile RemoveTile(int x, int y) => RemoveTile((x, y));
-    public Tile RemoveTile((int x, int y) location)
+    public Tile ReplaceTile(int x, int y, Tile tilePrefab) => ReplaceTile((x, y), tilePrefab);
+    public Tile ReplaceTile((int x, int y) location, Tile tilePrefab)
     {
         if (tiles.TryGetValue(location, out var tile))
         {
             tiles.Remove(location);
             tile.TileChanged -= OnTileChangedInternally; // avoid false positive event invocations
             Destroy(tile.gameObject);
+
+            var success = AddTile(location, tilePrefab);
+            Debug.Assert(success);
+            this[location]?.UpdateWalkable();
+            this[location.x, location.y + 1]?.UpdateWalkable();
+
             InvokeTileChangedNextFrame(location);
             return tile;
         }

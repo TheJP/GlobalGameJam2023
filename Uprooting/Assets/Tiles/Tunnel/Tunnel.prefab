@@ -130,7 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f53cfcd0ada54b4d82553b8d4a96988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AllowsAirflow>k__BackingField: 1
+  allowsAirflow: 0
+  isSolid: 0
+  isClimbable: 0
 --- !u!114 &-1628104588169026926
 MonoBehaviour:
   m_ObjectHideFlags: 0
