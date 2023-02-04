@@ -74,7 +74,7 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// The center location of the tile, in world space.
     /// </summary>
-    public Vector2 CenterLocation => new Vector2(Location.x + 0.5f, Location.y - 0.5f); // TODO reset once pivot is set to center
+    public Vector2 CenterLocation => new Vector2(Location.x, Location.y);
     
 
     private void InvokeTileChanged() => TileChanged?.Invoke(this);
