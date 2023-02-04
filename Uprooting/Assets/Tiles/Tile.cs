@@ -28,6 +28,19 @@ public class Tile : MonoBehaviour
             Invoke(nameof(InvokeTileChanged), 0);
         }
     }
+    
+    public bool IsDiggable => GetComponent<Dirt>() != null;
+    
+    public Tile DigTunnel()
+    {
+        if (!IsDiggable) {
+            Debug.LogError("Should not Dig into undiggable tile!");
+            return null;
+        }
+        var newTile = Tilemap.ReplaceTile(Location, Tilemap.TunnelTilePrefab);
+        Debug.Assert(newTile != null, "tunnel digging failed unexpectedly");
+        return newTile;
+    }
 
     [SerializeField]
     private bool isClimbable = false;
@@ -61,7 +74,7 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// The center location of the tile, in world space.
     /// </summary>
-    public Vector2 CenterLocation => new Vector2(Location.x + 0.5f, Location.y - 0.5f);
+    public Vector2 CenterLocation => new Vector2(Location.x, Location.y);
     
 
     private void InvokeTileChanged() => TileChanged?.Invoke(this);

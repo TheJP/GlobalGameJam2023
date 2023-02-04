@@ -14,6 +14,9 @@ public class GameUI : MonoBehaviour
         var ui = GetComponent<UIDocument>();
         actions = ui.rootVisualElement.Q<Label>("actions");
         movement = ui.rootVisualElement.Q("movement");
+        var nextRound = ui.rootVisualElement.Q<Button>("next-round");
+
+        nextRound.RegisterCallback<ClickEvent>(e => TurnSystemController.Instance.EndPlayerTurn());
     }
 
     public void Update()
