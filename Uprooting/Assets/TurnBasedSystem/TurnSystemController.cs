@@ -7,6 +7,8 @@ public class TurnSystemController : MonoBehaviour {
     [field: SerializeField] public int PlayerMovementPerTurn { get; private set; } = 10;
 
     public int TurnCount { get; private set; } = 0;
+
+    public bool IsPlayerTurn { get; private set; } = true;
     
     /**
      * Singleton instance.
@@ -19,7 +21,6 @@ public class TurnSystemController : MonoBehaviour {
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     
     
@@ -44,7 +45,14 @@ public class TurnSystemController : MonoBehaviour {
         CurrentMovementLeft = PlayerMovementPerTurn;
     }
 
-    public void EndPlayerTurn() {
+    public void EndPlayerTurn()
+    {
+        if (!IsPlayerTurn)
+        {
+            return;
+        }
+
+        IsPlayerTurn = false;
         TurnCount++;
         OnPlayerTurnEnd?.Invoke(this, EventArgs.Empty);
         StartEnemyTurn();
@@ -56,6 +64,12 @@ public class TurnSystemController : MonoBehaviour {
     }
     
     public void EndEnemyTurn() {
+        if (IsPlayerTurn)
+        {
+            return;
+        }
+
+        IsPlayerTurn = true;
         OnEnemyTurnEnd?.Invoke(this, EventArgs.Empty);
         StartPlayerTurn();
     }

@@ -65,3 +65,29 @@
     transition-duration: 0.5s;
     transition-property: height;
 }
+
+.next-round-box {
+    margin-top: 15px;
+}
+
+.next-round-button {
+    background-color: rgba(22, 22, 22, 255);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.next-round-button:hover {
+    background-color: rgba(85, 85, 85, 255);
+}
+
+.next-round-button:active {
+    background-color: rgba(0, 77, 2, 255);
+}
