@@ -34,6 +34,11 @@ public class Tilemap : MonoBehaviour
         }
     }
 
+    public Tile this[int x, int y] => this[(x, y)];
+    public Tile this[(int x, int y) location] => TryGetTile(location, out var tile) ? tile : null;
+    public bool TryGetTile(int x, int y, out Tile tile) => TryGetTile((x, y), out tile);
+    public bool TryGetTile((int x, int y) location, out Tile tile) => tiles.TryGetValue(location, out tile);
+
     public bool AddTile(int x, int y, Tile tilePrefab) => AddTile((x, y), tilePrefab);
     public bool AddTile((int x, int y) location, Tile tilePrefab)
     {
@@ -63,5 +68,51 @@ public class Tilemap : MonoBehaviour
         {
             return null;
         }
+    }
+
+    /// <summary>Searches through the maze to figure out if the given location has access to air.</summary>
+    public bool HasAir(int x, int y)
+    {
+        // Level that always has access to air everywhere. And all levels above also always have access to air.
+        const int AirLevel = 1;
+
+        if (y >= AirLevel) return true;
+        if (TryGetTile(x, y, out var originTile) && !originTile.AllowsAirflow) return false;
+
+        var origin = (x, y);
+        var visited = new HashSet<(int x, int y)>();
+        var bfs = new Queue<(int x, int y)>();
+        visited.Add(origin);
+        bfs.Enqueue(origin);
+
+        (int x, int y)[] airMoves = { (-1, 0), (1, 0), (0, -1), (0, 1) };
+
+        while (bfs.Count > 0)
+        {
+            var current = bfs.Dequeue();
+            if (current.y >= AirLevel)
+            {
+                return true;
+            }
+
+            foreach (var move in airMoves)
+            {
+                var newLocation = (x: current.x + move.x, y: current.y + move.y);
+                if (visited.Contains(newLocation))
+                {
+                    continue;
+                }
+
+                if (TryGetTile(newLocation, out var nextTile) && !nextTile.AllowsAirflow)
+                {
+                    continue;
+                }
+
+                visited.Add(newLocation);
+                bfs.Enqueue(newLocation);
+            }
+        }
+
+        return false;
     }
 }
