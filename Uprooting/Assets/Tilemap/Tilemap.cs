@@ -94,7 +94,7 @@ public class Tilemap : MonoBehaviour
         const int AirLevel = 1;
 
         if (y >= AirLevel) return true;
-        if (TryGetTile(x, y, out var originTile) && !originTile.AllowsAirflow) return false;
+        if (!TryGetTile(x, y, out var originTile) || !originTile.AllowsAirflow) return false;
 
         var origin = (x, y);
         var visited = new HashSet<(int x, int y)>();
@@ -120,7 +120,7 @@ public class Tilemap : MonoBehaviour
                     continue;
                 }
 
-                if (TryGetTile(newLocation, out var nextTile) && !nextTile.AllowsAirflow)
+                if (!TryGetTile(newLocation, out var nextTile) || !nextTile.AllowsAirflow)
                 {
                     continue;
                 }
