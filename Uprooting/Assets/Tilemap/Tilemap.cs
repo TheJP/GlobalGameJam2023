@@ -27,6 +27,9 @@ public class Tilemap : MonoBehaviour
 
     public void Start()
     {
+        var mole = FindObjectOfType<Mole>();
+        var moleLocation = (x: (int)mole.transform.position.x, y: (int)mole.transform.position.y);
+
         // Generate Tilemap
         Debug.Assert(dirtRows >= 0);
         Debug.Assert(dirtColumns >= 0);
@@ -34,7 +37,9 @@ public class Tilemap : MonoBehaviour
         {
             for (int x = 0; x < dirtColumns; ++x)
             {
-                AddTile(x, y, DirtTilePrefab);
+                var nearMole = (moleLocation.y - 1 <= y && y <= moleLocation.y + 1) &&
+                    (moleLocation.x - 1 <= x && x <= moleLocation.x + 1);
+                AddTile(x, y, nearMole ? TunnelTilePrefab : DirtTilePrefab);
             }
         }
     }
