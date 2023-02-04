@@ -91,4 +91,11 @@ public class Tile : MonoBehaviour
             }
         }
     }
+
+    public bool TryGetNeighbour((int x, int y) direction, out Tile tile) {
+        direction.x = Math.Max(Math.Min(direction.x, 1), -1);
+        direction.y = Math.Max(Math.Min(direction.y, 1), -1);
+        Tilemap.Instance.TryGetTile(Location.x + direction.x, Location.y + direction.y, out tile);
+        return tile != null;
+    }
 }

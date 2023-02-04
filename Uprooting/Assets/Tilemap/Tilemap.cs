@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TurnBasedSystem;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -164,5 +165,14 @@ public class Tilemap : MonoBehaviour
     {
         yield return null;
         TileChanged?.Invoke(location);
+    }
+
+    public bool TryGetMovementType(Tile currTile, Tile nextTile, out MovementType movementType) {
+        if (currTile == null || nextTile == null) {
+            movementType = MovementType.None;
+            return false;
+        }
+        movementType = MovementType.Walk; // TODO Figure out movement type
+        return true;
     }
 }
