@@ -11,8 +11,7 @@ public class Dirt : MonoBehaviour
 
     public void DigTunnel()
     {
-        var success = tile.Tilemap.RemoveTile(tile.Location) != null;
-        success &= tile.Tilemap.AddTile(tile.Location, tile.Tilemap.TunnelTilePrefab);
+        var success = tile.Tilemap.ReplaceTile(tile.Location, tile.Tilemap.TunnelTilePrefab);
         Debug.Assert(success, "tunnel digging failed unexpectedly");
     }
 }
