@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
+    public static AudioManager Instance { get; private set; }
+    
     public Sound[] sounds;
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         foreach (Sound s in sounds)
         {
             s.source        = gameObject.AddComponent<AudioSource>();
@@ -33,7 +40,7 @@ public class AudioManager : MonoBehaviour
     {
         Sound ps = Array.Find(sounds, sound => sound.name == name);
 
-        ps.source.Stop();
+        // ps.source.Stop();
     }
     public void PauseAudio (string name)
     {

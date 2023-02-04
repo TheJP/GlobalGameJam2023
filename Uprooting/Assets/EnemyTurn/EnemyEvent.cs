@@ -9,7 +9,7 @@ public abstract class EnemyEvent {
     
     public static readonly Dictionary<EnemyEvent, int> EventsAndWeight = new () {
         { new IdleEvent(), 1 },
-        { new TractorSeedEvent(), 1 },
+        { new TractorSeedEvent(), 10 },
     };
 
     public abstract void TurnStartAction();
@@ -48,7 +48,7 @@ public abstract class TractorEvent : EnemyEvent {
     public override void TurnStartAction() {
         _tractor = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Tractor"));
         _tractor.transform.position = new Vector3(startX, 0, 0);
-        // TODO start tractor sound
+        AudioManager.Instance.PlayAudio("Tractor");
     }
     
     public override bool TurnUpdateAction(float deltaTime) {
@@ -58,7 +58,7 @@ public abstract class TractorEvent : EnemyEvent {
 
     public override void TurnEndAction() {
         GameObject.Destroy(_tractor);
-        // TODO stop tractor sound
+        AudioManager.Instance.StopAudio("Tractor");
     }
 }
 
