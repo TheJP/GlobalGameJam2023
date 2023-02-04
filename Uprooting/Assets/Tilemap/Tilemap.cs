@@ -87,8 +87,12 @@ public class Tilemap : MonoBehaviour
         InvokeTileChangedNextFrame(location);
         return true;
     }
-
+    
     public Tile ReplaceTile(int x, int y, Tile tilePrefab) => ReplaceTile((x, y), tilePrefab);
+    /// <summary>
+    /// Replace the tile at the given location with the given tile prefab.
+    /// </summary>
+    /// <returns>The newly created Tile.</returns>
     public Tile ReplaceTile((int x, int y) location, Tile tilePrefab)
     {
         if (tiles.TryGetValue(location, out var tile))
@@ -103,7 +107,7 @@ public class Tilemap : MonoBehaviour
             this[location.x, location.y + 1]?.UpdateWalkable();
 
             InvokeTileChangedNextFrame(location);
-            return tile;
+            return this[location.x, location.y];
         }
         else
         {
@@ -194,6 +198,9 @@ public class Tilemap : MonoBehaviour
         }
         else if (!nextTile.IsSolid) {
             movementType = MovementType.Climb;
+        }
+        else if (nextTile.IsDiggable) {
+            movementType = MovementType.DigMovement;    
         } else {
             movementType = MovementType.None;
         }
