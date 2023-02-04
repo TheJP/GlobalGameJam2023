@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class EnemyEvent {
     
@@ -62,11 +63,14 @@ public abstract class TractorEvent : EnemyEvent {
 }
 
 public class TractorSeedEvent : TractorEvent {
+    private const float SeedSpawnChance = 0.3f; 
     public override void TurnEndAction() {
         base.TurnEndAction();
 
         foreach (var growableTile in Tilemap.Instance.GetGrowableTiles()) {
-            
+            if (Random.value < SeedSpawnChance) {
+                growableTile.SpawnSeed();
+            }
         }
     }
 }

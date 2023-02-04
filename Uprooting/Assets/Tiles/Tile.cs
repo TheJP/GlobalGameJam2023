@@ -128,4 +128,11 @@ public class Tile : MonoBehaviour
         }
         Gizmos.DrawWireCube(CenterLocation, Vector2.one * 0.5f);
     }
+
+    public void SpawnSeed() {
+        if (!IsGrowable) {
+            return;
+        }
+        var seed = Instantiate(Tilemap.CarrotPrefab, transform);
+    }
 }
