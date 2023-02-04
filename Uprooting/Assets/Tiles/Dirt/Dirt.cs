@@ -5,8 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Tile))]
 public class Dirt : MonoBehaviour
 {
-    private Tile tile;
+    [SerializeField]
+    private Sprite[] spriteVariations;
 
-    public void Start() => tile = GetComponent<Tile>();
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    private Tile tile;
+    
+    public void Start()
+    {
+        tile = GetComponent<Tile>();
+        if (spriteVariations != null && spriteVariations.Length > 0)
+        {
+            spriteRenderer.sprite = spriteVariations[Random.Range(0, spriteVariations.Length)];
+        }
+    }
     
 }
