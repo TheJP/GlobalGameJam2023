@@ -12,6 +12,9 @@
                     <ui:VisualElement name="movement" class="progress-inner" />
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:VisualElement class="next-round-box">
+                <ui:Button text="Next&#10;Round" display-tooltip-when-elided="true" name="next-round" class="next-round-button" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
