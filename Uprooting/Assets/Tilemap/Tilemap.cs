@@ -26,6 +26,18 @@ public class Tilemap : MonoBehaviour
     public event Action<(int x, int y)> TileChanged;
 
     private readonly Dictionary<(int x, int y), Tile> tiles = new();
+    
+    public static Tilemap Instance { get; private set; }
+    
+    public void Awake()
+    {
+        if (Instance != null) {
+            Destroy(gameObject);
+            Debug.LogError("Multiple Tilemaps detected. Destroying duplicate.");
+            return;
+        }
+        Instance = this;
+    }
 
     public void Start()
     {
