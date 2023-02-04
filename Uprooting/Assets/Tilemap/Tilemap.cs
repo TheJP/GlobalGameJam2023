@@ -16,6 +16,11 @@ public class Tilemap : MonoBehaviour
     [field: SerializeField]
     public Tile TunnelTilePrefab { get; private set; }
 
+    [field: Header("Background")]
+
+    [field: SerializeField]
+    public SpriteRenderer BackgroundTunnelSpriteRenderer { get; private set; }
+
     [Header("Tilemap Generation Settings")]
 
     [SerializeField]
@@ -27,12 +32,13 @@ public class Tilemap : MonoBehaviour
     public event Action<(int x, int y)> TileChanged;
 
     private readonly Dictionary<(int x, int y), Tile> tiles = new();
-    
+
     public static Tilemap Instance { get; private set; }
-    
+
     public void Awake()
     {
-        if (Instance != null) {
+        if (Instance != null)
+        {
             Destroy(gameObject);
             Debug.LogError("Multiple Tilemaps detected. Destroying duplicate.");
             return;
@@ -87,7 +93,7 @@ public class Tilemap : MonoBehaviour
         InvokeTileChangedNextFrame(location);
         return true;
     }
-    
+
     public Tile ReplaceTile(int x, int y, Tile tilePrefab) => ReplaceTile((x, y), tilePrefab);
     /// <summary>
     /// Replace the tile at the given location with the given tile prefab.
@@ -179,44 +185,56 @@ public class Tilemap : MonoBehaviour
     /// <param name="nextTile">The end Tile of the movement</param>
     /// <param name="movementType">The type of the movement that's needed between these Tile, or None, if movement not possible</param>
     /// <returns>Returns true if the movement is possible, false if the movement is not possible or the tiles are not next to each other.</returns>
-    public bool TryGetMovementType(Tile currTile, Tile nextTile, out MovementType movementType) {
-        if (currTile == null || nextTile == null) {
-            movementType = MovementType.None;
-            return false;
-        }
-        
-        if(!AreTilesNeighbour(currTile, nextTile)) {
+    public bool TryGetMovementType(Tile currTile, Tile nextTile, out MovementType movementType)
+    {
+        if (currTile == null || nextTile == null)
+        {
             movementType = MovementType.None;
             return false;
         }
 
-        if (nextTile.IsWalkable && currTile.IsWalkable) {
+        if (!AreTilesNeighbour(currTile, nextTile))
+        {
+            movementType = MovementType.None;
+            return false;
+        }
+
+        if (nextTile.IsWalkable && currTile.IsWalkable)
+        {
             movementType = MovementType.Walk;
         }
-        else if(currTile.IsClimbable && nextTile.IsClimbable) {
+        else if (currTile.IsClimbable && nextTile.IsClimbable)
+        {
             movementType = MovementType.EasyClimb;
         }
-        else if (!nextTile.IsSolid) {
+        else if (!nextTile.IsSolid)
+        {
             movementType = MovementType.Climb;
         }
-        else if (nextTile.IsDiggable) {
-            movementType = MovementType.DigMovement;    
-        } else {
+        else if (nextTile.IsDiggable)
+        {
+            movementType = MovementType.DigMovement;
+        }
+        else
+        {
             movementType = MovementType.None;
         }
         return movementType != MovementType.None;
     }
 
-    public bool AreTilesNeighbour(Tile currTile, Tile nextTile) {
-        
-        if (currTile.Location.x == nextTile.Location.x) {
+    public bool AreTilesNeighbour(Tile currTile, Tile nextTile)
+    {
+
+        if (currTile.Location.x == nextTile.Location.x)
+        {
             return Mathf.Abs(currTile.Location.y - nextTile.Location.y) == 1;
         }
-        if (currTile.Location.y == nextTile.Location.y) {
+        if (currTile.Location.y == nextTile.Location.y)
+        {
             return Mathf.Abs(currTile.Location.x - nextTile.Location.x) == 1;
         }
         return false;
-        
+
     }
     
     public List<Tile> GetGrowableTiles() {
