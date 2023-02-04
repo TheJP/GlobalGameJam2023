@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Dig",
                     "type": "Button",
                     "id": "bd90dd07-b816-4add-a58b-0e7b2cad0153",
                     "expectedControlType": "Button",
@@ -201,12 +201,23 @@
                 },
                 {
                     "name": "",
+                    "id": "4f02f7c4-6c61-411e-bfef-32ffa8c6582c",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dig",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Dig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -217,7 +228,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Dig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -228,7 +239,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "Dig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -239,7 +250,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Dig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -250,7 +261,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Dig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
