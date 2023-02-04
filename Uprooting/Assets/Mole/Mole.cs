@@ -9,8 +9,6 @@ using UnityEngine.InputSystem;
 
 public class Mole : MonoBehaviour
 {
-    public Animator animator;    
-    
     [SerializeField]
     [Tooltip("Max speed of mole in units per second.")]
     private float speed = 1f;
@@ -77,7 +75,7 @@ public class Mole : MonoBehaviour
             return;
 
         // now we know we can move
-        animator.SetBool("isMoving", true);
+        
         // TODO set animation variables here
 
         nextTile = possibleNextTile;
