@@ -3,9 +3,9 @@ using TurnBasedSystem;
 using UnityEngine;
 
 public class TurnSystemController : MonoBehaviour {
-    [SerializeField] private int playerAPPerTurn = 10;
-    [SerializeField] private int playerMovementPerTurn = 10;
-    
+    [field: SerializeField] public int PlayerAPPerTurn { get; private set; } = 10;
+    [field: SerializeField] public int PlayerMovementPerTurn { get; private set; } = 10;
+
     public int TurnCount { get; private set; } = 0;
     
     /**
@@ -40,8 +40,8 @@ public class TurnSystemController : MonoBehaviour {
     public event OnEnemyTurnEnd OnEnemyTurnEnd;
 
     private void StartPlayerTurn() {
-        CurrentAPLeft = playerAPPerTurn;
-        CurrentMovementLeft = playerMovementPerTurn;
+        CurrentAPLeft = PlayerAPPerTurn;
+        CurrentMovementLeft = PlayerMovementPerTurn;
     }
 
     public void EndPlayerTurn() {
