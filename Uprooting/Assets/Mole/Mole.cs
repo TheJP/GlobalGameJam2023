@@ -75,6 +75,8 @@ public class Mole : MonoBehaviour
             return;
 
         // now we know we can move
+        
+        // TODO set animation variables here
 
         nextTile = possibleNextTile;
         isMoving = true;
