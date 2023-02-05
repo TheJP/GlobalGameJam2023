@@ -44,4 +44,8 @@ public class GrowablePlant : MonoBehaviour {
             TurnSystemController.Instance.OnEnemyTurnEnd -= Grow;
         }
     }
+
+    public void HasBeenDestroyed() {
+        TurnSystemController.Instance.OnEnemyTurnEnd -= Grow;
+    }
 }
