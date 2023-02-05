@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 public class Mole : MonoBehaviour
 {
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
     
     [SerializeField]
     [Tooltip("Max speed of mole in units per second.")]
@@ -67,6 +68,7 @@ public class Mole : MonoBehaviour
         movementPercent = 0f;
         currTile = nextTile;
         isMoving = false;
+        EndAnimation();
     }
 
     public void OnMove(InputValue value)
@@ -110,7 +112,7 @@ public class Mole : MonoBehaviour
 
     private void StartMovement(Tile nextTile) {
         // TODO set animation variables here
-        animator.SetBool("isMoving", true);
+        StartAnimation();
         
         this.nextTile = nextTile;
         isMoving = true;
@@ -125,5 +127,15 @@ public class Mole : MonoBehaviour
         }
         Gizmos.color = Color.red;
         Gizmos.DrawCube(currTile.CenterLocation, Vector3.one * 0.5f);
+    }
+    
+    private void StartAnimation() {
+        bool isFacingRight = (currMoveInputDirection.x > 0);
+        spriteRenderer.flipX = isFacingRight;
+        animator.SetBool("isDigging", true);
+    }
+
+    private void EndAnimation() {
+        animator.SetBool("isDigging", false);
     }
 }

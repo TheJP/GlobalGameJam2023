@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &32554148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 305463466237938114, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+  m_PrefabInstance: {fileID: 875487903}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &32554150 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 305463466237938124, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+  m_PrefabInstance: {fileID: 875487903}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &32554151
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32554148}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f075d2f93d1b4e7799f96a3ba295ec9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &464500023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236,12 +266,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 305463465610192943, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 32554151}
+    - target: {fileID: 305463465610192943, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 32554150}
+    - target: {fileID: 305463465610192943, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
       propertyPath: startPosition.x
       value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 305463465610192943, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
       propertyPath: startPosition.y
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 305463466237938124, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 305463465610192940, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
