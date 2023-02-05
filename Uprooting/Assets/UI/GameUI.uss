@@ -23,6 +23,16 @@
     padding-bottom: 20px;
 }
 
+.no-oxygen-box {
+    align-items: center;
+    display: none;
+}
+
+.no-oxygen-label {
+    -unity-text-align: upper-center;
+    color: rgba(179, 19, 25, 255);
+}
+
 .actions-box {
     align-items: center;
 }
@@ -68,7 +78,7 @@
 }
 
 .next-round-box {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .next-round-button {
