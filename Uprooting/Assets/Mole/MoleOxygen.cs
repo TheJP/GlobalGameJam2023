@@ -44,7 +44,6 @@ public class MoleOxygen : MonoBehaviour
 
     public void SetOxygen(bool value)
     {
-        Debug.Log($"Set Oxygen {value}");
         if (HasOxygen == value)
         {
             return;
