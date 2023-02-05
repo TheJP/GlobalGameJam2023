@@ -69,3 +69,15 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Eating
+    clip: {fileID: 8300000, guid: 437fa60e6ed2eab4f83e81bcc5f22dff, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Wee
+    clip: {fileID: 8300000, guid: 6c53339559c31ef4e8ec7cc11bbbee79, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
