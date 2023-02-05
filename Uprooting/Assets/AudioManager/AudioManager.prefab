@@ -73,10 +73,28 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 437fa60e6ed2eab4f83e81bcc5f22dff, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: Wee
     clip: {fileID: 8300000, guid: 6c53339559c31ef4e8ec7cc11bbbee79, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CaveIn
+    clip: {fileID: 8300000, guid: cd87cab75110c744e902d48456eb6489, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Snore
+    clip: {fileID: 8300000, guid: 8ca33d1229476724ea12a32825306167, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Heartbeat
+    clip: {fileID: 8300000, guid: a9212df08ce96f64ba7ad70464f7958e, type: 3}
     volume: 1
     pitch: 1
     loop: 1
