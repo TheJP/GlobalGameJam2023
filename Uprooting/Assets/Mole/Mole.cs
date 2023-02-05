@@ -85,6 +85,7 @@ public class Mole : MonoBehaviour
             nextTile = nextTile.DigTunnel();
             Assert.IsNotNull(nextTile, "new Tile after digging is null!");
             AudioManager.Instance.StopAudio("Dig");
+            AudioManager.Instance.StopAudio("Eating");
         }
         movementType = MovementType.None;
         movementPercent = 0f;
@@ -146,7 +147,7 @@ public class Mole : MonoBehaviour
             Debug.LogError("Trying to dig out plant, but there is no plant!");
             return;
         }
-        // sound
+        AudioManager.Instance.PlayAudio("Eating");
         nextTile.DigOutPlant();
         Points += plant.Points;
         

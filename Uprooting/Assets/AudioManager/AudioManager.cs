@@ -39,7 +39,6 @@ public class AudioManager : MonoBehaviour
     public void StopAudio (string name)
     {
         Sound ps = Array.Find(sounds, sound => sound.name == name);
-
         ps.source.Stop();
     }
     public void PauseAudio (string name)
