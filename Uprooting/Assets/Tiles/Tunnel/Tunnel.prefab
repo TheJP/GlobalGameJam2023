@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f53cfcd0ada54b4d82553b8d4a96988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowsAirflow: 0
+  allowsAirflow: 1
   isSolid: 0
   isClimbable: 0
 --- !u!114 &-1628104588169026926
@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de3e68b1d0c3694c97e00823cb8f7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 392001055501245791}
