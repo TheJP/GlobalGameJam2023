@@ -28,7 +28,7 @@ public class IdleEvent : EnemyEvent {
     private float _timeElapsed = 0f;
     
     public override void TurnStartAction() {
-        // TODO start idle sound
+        AudioManager.Instance.PlayAudio("Snore");
     }
 
     public override bool TurnUpdateAction(float deltaTime) {
@@ -37,7 +37,7 @@ public class IdleEvent : EnemyEvent {
     }
 
     public override void TurnEndAction() {
-        // TODO stop idle sound
+        AudioManager.Instance.StopAudio("Snore");
     }
 }
 
