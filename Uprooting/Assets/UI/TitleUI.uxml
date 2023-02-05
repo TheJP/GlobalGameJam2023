@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TitleUI.uss?fileID=7433441132597879392&amp;guid=2d2b23259cf36d846b671ac126f04bb9&amp;type=3#TitleUI" />
     <ui:VisualElement style="align-items: center; flex-direction: row; justify-content: center; width: 100%; height: 100%;">
-        <ui:VisualElement style="width: 1200px; height: 675px; align-items: center; background-image: url(&apos;project://database/Assets/UI/TITLESCREEN.png?fileID=2800000&amp;guid=541b9db0aefbe8143bf1a9e137dfcda6&amp;type=3#TITLESCREEN&apos;);">
-            <ui:VisualElement style="position: absolute; bottom: 190px; right: 52px; height: 276px; width: 486px; align-items: center; justify-content: center;">
+        <ui:VisualElement style="width: 1100px; height: 619px; align-items: center; background-image: url(&apos;project://database/Assets/UI/TITLESCREEN.png?fileID=2800000&amp;guid=541b9db0aefbe8143bf1a9e137dfcda6&amp;type=3#TITLESCREEN&apos;);">
+            <ui:VisualElement style="position: absolute; bottom: 164px; right: 16px; height: 276px; width: 486px; align-items: center; justify-content: center;">
                 <ui:Button display-tooltip-when-elided="true" name="play" class="play" />
             </ui:VisualElement>
         </ui:VisualElement>
