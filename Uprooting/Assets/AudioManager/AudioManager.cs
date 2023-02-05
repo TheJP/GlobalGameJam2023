@@ -33,14 +33,12 @@ public class AudioManager : MonoBehaviour
     public void PlayAudio (string name)
     {
             Sound ps = Array.Find(sounds, sound => sound.name == name);
-            if (name == "Eating")
-            {
-                ps.source.PlayOneShot(ps.source.clip);   
+            if (name == "Eating") {
+                ps.source.PlayDelayed(0.4f);
+            } else {
+                ps.source.Play();
             }
-            else
-            {
-                ps.source.Play();   
-            }
+            
     }
     public void StopAudio (string name)
     {

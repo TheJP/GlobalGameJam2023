@@ -183,6 +183,7 @@ public class Mole : MonoBehaviour
             Debug.LogError("Trying to dig out plant, but there is no plant!");
             return;
         }
+        AudioManager.Instance.PlayAudio("Wee");
         AudioManager.Instance.PlayAudio("Eating");
         nextTile.DigOutPlant();
         Points += plant.Points;
