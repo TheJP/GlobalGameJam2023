@@ -59,7 +59,7 @@ public class Tilemap : MonoBehaviour
         // Generate Tilemap
         Debug.Assert(dirtRows >= 0);
         Debug.Assert(dirtColumns >= 0);
-        for (int y = -1; y >= -dirtRows; --y)
+        for (int y = 0; y >= -dirtRows; --y)
         {
             for (int x = 0; x < dirtColumns; ++x)
             {
@@ -69,12 +69,15 @@ public class Tilemap : MonoBehaviour
             }
         }
 
+        var airTunnelX = moleLocation.x - 2;
+        for (int airTunnelY = moleLocation.y + 1; airTunnelY <= 0; ++airTunnelY)
+        {
+            ReplaceTile(airTunnelX, airTunnelY, TunnelTilePrefab);
+        }
+
         foreach (var tile in tiles.Values)
         {
             tile.UpdateWalkable();
-            if (tile.IsGrowable) {
-                Debug.Log($"Tile {tile.Location} is growable!: {GetGrowableTiles().Count}");
-            }
         }
     }
 
@@ -134,7 +137,7 @@ public class Tilemap : MonoBehaviour
     public bool HasOxygen(int x, int y)
     {
         // Level that always has access to air everywhere. And all levels above also always have access to air.
-        const int AirLevel = -1;
+        const int AirLevel = 0;
 
         if (y >= AirLevel) return true;
         if (!TryGetTile(x, y, out var originTile) || !originTile.AllowsAirflow) return false;

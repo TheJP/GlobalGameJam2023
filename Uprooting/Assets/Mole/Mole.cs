@@ -102,9 +102,9 @@ public class Mole : MonoBehaviour
             return;
 
         if (movementType == MovementType.DigMovement) {
-            if (!diggingInput) {
-                return;
-            }
+            // if (!diggingInput) {
+            //     return;
+            // }
             if (!TurnSystemController.Instance.TryDoAction(ActionType.Dig)) {
                 // we don't have enough AP for digging
                 return;

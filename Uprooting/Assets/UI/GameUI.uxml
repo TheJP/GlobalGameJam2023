@@ -2,6 +2,9 @@
     <Style src="project://database/Assets/UI/GameUI.uss?fileID=7433441132597879392&amp;guid=296620a57e19a4d498fe8b89c4fff651&amp;type=3#GameUI" />
     <ui:VisualElement picking-mode="Ignore" class="info-outer">
         <ui:VisualElement class="info-box">
+            <ui:VisualElement name="no-oxygen" class="no-oxygen-box">
+                <ui:Label text="Oxygen&#10;Low!" display-tooltip-when-elided="true" class="label no-oxygen-label" />
+            </ui:VisualElement>
             <ui:VisualElement class="actions-box">
                 <ui:Label text="Actions" display-tooltip-when-elided="true" class="actions-labels label" />
                 <ui:Label text="99" display-tooltip-when-elided="true" name="actions" class="actions" />

@@ -17,6 +17,8 @@ public class MoleOxygen : MonoBehaviour
 
     public bool HasOxygen { get; private set; } = true;
 
+    public event System.Action<MoleOxygen> HasOxygenChanged;
+
     private float previousRadius = 0f;
     private float currentRadius;
     private float animationStart;
@@ -52,5 +54,9 @@ public class MoleOxygen : MonoBehaviour
         HasOxygen = value;
         previousRadius = currentRadius;
         animationStart = Time.time;
+
+        Invoke(nameof(InvokeOxygenChanged), 0);
     }
+
+    private void InvokeOxygenChanged() => HasOxygenChanged?.Invoke(this);
 }
