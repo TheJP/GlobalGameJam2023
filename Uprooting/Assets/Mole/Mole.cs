@@ -11,6 +11,8 @@ using UnityEngine.Serialization;
 
 public class Mole : MonoBehaviour
 {
+    [SerializeField]
+    private float fallingDownSpeed = 10;
 
     public static Mole Instance { get; private set; }
 
@@ -30,6 +32,8 @@ public class Mole : MonoBehaviour
 
     private Vector2 currMoveInputDirection;
     private bool diggingInput = false;
+
+    public bool IsFallingDown { get; private set; }
 
     public bool IsMoving { get; private set; } = false;
     private MovementType movementType = MovementType.None;
@@ -68,6 +72,10 @@ public class Mole : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (IsFallingDown) {
+            HandleFallingDown();
+            return;
+        }
         if (!TurnSystemController.Instance.IsPlayerTurn) {
             return;
         }
@@ -78,11 +86,28 @@ public class Mole : MonoBehaviour
         if (IsMoving) {
             HandleMovement();
         }
-        
     }
 
+    private void HandleFallingDown() {
+        if (!IsMoving) {
+            if (currTile.TryGetNeighbour((0, -1), out var tileBelow)) {
+                if (tileBelow.IsSolid) {
+                    IsFallingDown = false;
+                    ScreenShaker.Instance.TriggerShake(3);
+                    return;
+                }
+                nextTile = tileBelow;
+                IsMoving = true;
+                movementType = MovementType.FallDownMovement;
+            }
+        }
+        else {
+            HandleMovement();
+        }
+    }
+    
     private void HandleMovement() {
-        movementPercent += Time.deltaTime * speed;
+        movementPercent += Time.deltaTime * (IsFallingDown ? fallingDownSpeed : speed);
         if (movementPercent >= 1f) {
             EndMovement();
         }
@@ -100,7 +125,9 @@ public class Mole : MonoBehaviour
         movementPercent = 0f;
         currTile = nextTile;
         IsMoving = false;
-        EndAnimation();
+        if (!IsFallingDown) {
+            EndAnimation();
+        }
     }
 
     public void OnMove(InputValue value)
@@ -113,7 +140,7 @@ public class Mole : MonoBehaviour
     }
 
     private void CheckForMovementStart() {
-        if (IsMoving || IsEating) return;
+        if (IsMoving || IsEating || IsFallingDown) return;
         if (currMoveInputDirection == Vector2.zero) return;
 
         var moveDirectionInt = (Mathf.RoundToInt(currMoveInputDirection.x), Mathf.RoundToInt(currMoveInputDirection.y));
@@ -201,4 +228,12 @@ public class Mole : MonoBehaviour
     public void EndAnimation() {
         animator.SetBool("isDigging", false);
     }
+
+    public void FallDown() {
+        if (currTile.IsWalkable) {
+            return;
+        }
+        IsFallingDown = true;
+    }
+
 }

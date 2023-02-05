@@ -178,7 +178,7 @@ public class Tile : MonoBehaviour
         };
         if (Random.value < caveinProbability) {
             FillWithDirt();
-            ScreenShaker.Instance.TriggerShake();
+            ScreenShaker.Instance.TriggerShake(0.2f);
             return true;
         }
 
