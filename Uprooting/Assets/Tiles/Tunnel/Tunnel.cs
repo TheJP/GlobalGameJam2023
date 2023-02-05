@@ -21,9 +21,11 @@ public class Tunnel : MonoBehaviour
         Debug.Assert(y >= 0);
         var factor = background.sprite.pixelsPerUnit;
         var crop = new Rect(x * factor, y * factor, 1f * factor, 1f * factor);
+        crop.x = Mathf.Clamp(crop.x, 0f, (background.bounds.size.x - 1f) * factor - 0.5f);
+        crop.y = Mathf.Clamp(crop.y, 0f, (background.bounds.size.y - 1f) * factor - 0.5f);
         var sprite = Sprite.Create(background.sprite.texture, crop, new Vector2(0.5f, 0.5f), background.sprite.pixelsPerUnit);
         spriteRenderer.sprite = sprite;
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = background.color;
     }
 
     /// <summary>
