@@ -20,4 +20,9 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement picking-mode="Ignore" name="enemy-box" class="enemy-outer">
+        <ui:VisualElement picking-mode="Ignore" class="enemy-box">
+            <ui:ProgressBar value="0" title="Farmer Farming..." name="enemy-progress" high-value="1" class="enemy-progress" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
