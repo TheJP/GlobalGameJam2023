@@ -62,12 +62,13 @@ public class Mole : MonoBehaviour
         transform.position = new Vector3(currTile.Location.x, currTile.Location.y, 0);
 
         GetComponent<MoleOxygen>().HasOxygenChanged += oxygen => {
-            if (oxygen.HasOxygen) {
+            if (!oxygen.HasOxygen) {
+                Debug.Log("Heartbeat start");
                 AudioManager.Instance.PlayAudio("Heartbeat");
             }
             else {
+                Debug.Log("Heartbeat stop");
                 AudioManager.Instance.StopAudio("Heartbeat");
-
             }
         };
     }
