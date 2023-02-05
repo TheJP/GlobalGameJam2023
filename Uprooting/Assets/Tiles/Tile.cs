@@ -176,4 +176,13 @@ public class Tile : MonoBehaviour
 
         return false;
     }
+
+    public void DigOutPlant() {
+        if (currGrowablePlant == null) {
+            Debug.LogError("Should not dig out plant on tile without plant!");
+            return;
+        }
+        Destroy(currGrowablePlant.gameObject);
+        currGrowablePlant = null;
+    }
 }

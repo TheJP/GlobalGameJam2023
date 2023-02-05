@@ -13,6 +13,8 @@ public class Mole : MonoBehaviour
     
     public static Mole Instance { get; private set; }
     
+    public int points = 0;
+    
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     
@@ -103,11 +105,15 @@ public class Mole : MonoBehaviour
     private void CheckForMovementStart() {
         if (isMoving) return;
         if (currMoveInputDirection == Vector2.zero) return;
-        
+
         var moveDirectionInt = (Mathf.RoundToInt(currMoveInputDirection.x), Mathf.RoundToInt(currMoveInputDirection.y));
-        
+
         if (!currTile.TryGetNeighbour(moveDirectionInt, out var possibleNextTile))
             return;
+        if (possibleNextTile.currGrowablePlant != null) {
+            DigOutPlant(possibleNextTile);
+            return;
+        }
         if (!Tilemap.Instance.TryGetMovementType(currTile, possibleNextTile, out movementType))
             return;
         if (!TurnSystemController.Instance.CanDoMovement(movementType)) // only check if we can move, because we might not have the AP we need for stuff like digging
@@ -129,6 +135,17 @@ public class Mole : MonoBehaviour
 
         // now we know we can move
         StartMovement(possibleNextTile);
+    }
+
+    private void DigOutPlant(Tile nextTile) {
+        var plant = nextTile.currGrowablePlant;
+        if (plant == null) {
+            Debug.LogError("Trying to dig out plant, but there is no plant!");
+            return;
+        }
+        // sound
+        nextTile.DigOutPlant();
+        
     }
 
     private void StartMovement(Tile nextTile) {
