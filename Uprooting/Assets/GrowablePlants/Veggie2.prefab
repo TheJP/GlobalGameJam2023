@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2432404565643446843}
   - component: {fileID: 8668945558415736929}
   m_Layer: 0
-  m_Name: Carrot
+  m_Name: Veggie2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3dae83c43c13c45b1925cc27aec96296, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a725e3e892a0f4efd92fefa0dbf561ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d26e89c3e94430e9bf64c2a340a8458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantSprite: {fileID: 21300000, guid: 3dae83c43c13c45b1925cc27aec96296, type: 3}
+  plantSprite: {fileID: 21300000, guid: a725e3e892a0f4efd92fefa0dbf561ef, type: 3}
   spriteRenderer: {fileID: 0}
   growthStagesCount: 3
   minScale: 0.5
-  scoreMultiplier: 1
+  scoreMultiplier: 2

@@ -121,6 +121,9 @@ public class Mole : MonoBehaviour
             Assert.IsNotNull(nextTile, "new Tile after digging is null!");
             AudioManager.Instance.StopAudio("Dig");
         }
+        if (!CurrentTile.AllowsAirflow) {
+            // stop heartbeat sound
+        }
         movementType = MovementType.None;
         movementPercent = 0f;
         currTile = nextTile;
@@ -192,6 +195,9 @@ public class Mole : MonoBehaviour
     }
 
     private void StartMovement(Tile nextTile) {
+        if (!CurrentTile.AllowsAirflow) {
+            // start heartbeat
+        }
         StartAnimation();
         
         this.nextTile = nextTile;

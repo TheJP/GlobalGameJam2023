@@ -472,7 +472,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DirtTilePrefab>k__BackingField: {fileID: 6579394477530806610, guid: 5fda690ed3297dc499a7982011ffa624, type: 3}
   <TunnelTilePrefab>k__BackingField: {fileID: 6579394477530806610, guid: ba095d1437db1f940b0f5004cd3b3606, type: 3}
-  <CarrotPrefab>k__BackingField: {fileID: 8668945558415736929, guid: 64add4d6faa694804bf47f0f2daf8202, type: 3}
+  <CarrotPrefabs>k__BackingField:
+  - {fileID: 8668945558415736929, guid: fea4a96334fc54da086689fb5f409ffc, type: 3}
+  - {fileID: 8668945558415736929, guid: 64add4d6faa694804bf47f0f2daf8202, type: 3}
+  - {fileID: 8668945558415736929, guid: 64add4d6faa694804bf47f0f2daf8202, type: 3}
+  - {fileID: 8668945558415736929, guid: 64add4d6faa694804bf47f0f2daf8202, type: 3}
+  - {fileID: 8668945558415736929, guid: 64add4d6faa694804bf47f0f2daf8202, type: 3}
   <BackgroundTunnelSpriteRenderer>k__BackingField: {fileID: 6253981534071217714}
   dirtRows: 19
   dirtColumns: 60

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TurnBasedSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class Tilemap : MonoBehaviour
 {
@@ -16,7 +18,12 @@ public class Tilemap : MonoBehaviour
     public Tile TunnelTilePrefab { get; private set; }
     
     [field: SerializeField]
-    public GrowablePlant CarrotPrefab { get; private set; }
+    public List<GrowablePlant> CarrotPrefabs { get; private set; }
+    
+    public GrowablePlant GetRandomCarrotPrefab()
+    {
+        return CarrotPrefabs[Random.Range(0, CarrotPrefabs.Count)];
+    }
 
     [field: Header("Background")]
 
