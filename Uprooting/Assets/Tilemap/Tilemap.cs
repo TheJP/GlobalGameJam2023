@@ -121,11 +121,12 @@ public class Tilemap : MonoBehaviour
         }
     }
 
+    public bool HasOxygen((int x, int y) location) => HasOxygen(location.x, location.y);
     /// <summary>Searches through the maze to figure out if the given location has access to air.</summary>
-    public bool HasAir(int x, int y)
+    public bool HasOxygen(int x, int y)
     {
         // Level that always has access to air everywhere. And all levels above also always have access to air.
-        const int AirLevel = 1;
+        const int AirLevel = -1;
 
         if (y >= AirLevel) return true;
         if (!TryGetTile(x, y, out var originTile) || !originTile.AllowsAirflow) return false;

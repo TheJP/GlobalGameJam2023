@@ -153,6 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d756983b7ce1ac949ac2701e45910463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postProcessing: {fileID: 2100000, guid: 4cc9199b22255974587a1bcc12da231f, type: 2}
+  radiusNoOxygen: 0.6
+  animationDuration: 1
 --- !u!81 &305463465610192930
 AudioListener:
   m_ObjectHideFlags: 0

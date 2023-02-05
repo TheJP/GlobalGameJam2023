@@ -26,6 +26,8 @@ public class Mole : MonoBehaviour
     private Tile currTile;
     private Tile nextTile;
 
+    public Tile CurrentTile => currTile;
+
     public void Start() {
         var startPosition = (x: Mathf.RoundToInt(transform.position.x), y: Mathf.RoundToInt(transform.position.y));
         Tilemap.Instance.TryGetTile(startPosition.x, startPosition.y, out currTile);

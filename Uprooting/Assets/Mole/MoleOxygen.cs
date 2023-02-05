@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Mole))]
 public class MoleOxygen : MonoBehaviour
 {
 
@@ -20,9 +21,13 @@ public class MoleOxygen : MonoBehaviour
     private float currentRadius;
     private float animationStart;
 
-    public void Start()
+    public IEnumerator Start()
     {
         animationStart = Time.time;
+        var mole = GetComponent<Mole>();
+        yield return null; // Make sure tilemap is generated
+        SetOxygen(Tilemap.Instance.HasOxygen(mole.CurrentTile.Location));
+        Tilemap.Instance.TileChanged += _ => SetOxygen(Tilemap.Instance.HasOxygen(mole.CurrentTile.Location));
     }
 
     public void Update()
@@ -39,6 +44,12 @@ public class MoleOxygen : MonoBehaviour
 
     public void SetOxygen(bool value)
     {
+        Debug.Log($"Set Oxygen {value}");
+        if (HasOxygen == value)
+        {
+            return;
+        }
+
         HasOxygen = value;
         previousRadius = currentRadius;
         animationStart = Time.time;
