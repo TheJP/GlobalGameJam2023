@@ -168,7 +168,7 @@ public class Tile : MonoBehaviour
             return false;
         }
         
-        var caveinProbability = 0.5f; // todo add higher probability for wider ceilings
+        var caveinProbability = 0.2f; // todo add higher probability for wider ceilings
         if (Random.value < caveinProbability) {
             FillWithDirt();
             return true;
