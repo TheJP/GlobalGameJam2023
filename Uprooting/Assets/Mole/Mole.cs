@@ -12,9 +12,9 @@ public class Mole : MonoBehaviour
 {
     
     public static Mole Instance { get; private set; }
-    
-    public int points = 0;
-    
+
+    public int Points { get; private set; } = 0;
+
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     
@@ -138,6 +138,9 @@ public class Mole : MonoBehaviour
     }
 
     private void DigOutPlant(Tile nextTile) {
+        if (!TurnSystemController.Instance.TryDoAction(ActionType.GrabPlant)) {
+            return;
+        }
         var plant = nextTile.currGrowablePlant;
         if (plant == null) {
             Debug.LogError("Trying to dig out plant, but there is no plant!");
@@ -145,6 +148,7 @@ public class Mole : MonoBehaviour
         }
         // sound
         nextTile.DigOutPlant();
+        Points += plant.Points;
         
     }
 

@@ -18,6 +18,7 @@ public class GrowablePlant : MonoBehaviour {
     private float minScale = 0.5f;
 
     private float CurrentScale => Mathf.Lerp(minScale, 1f, _currGrowthStage / (float)(growthStagesCount - 1));
+    public int Points => _currGrowthStage;
 
     private int _currGrowthStage = 0;
     private bool _hasJustBeenPlanted = true;
