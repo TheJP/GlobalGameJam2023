@@ -35,12 +35,17 @@ public class Mole : MonoBehaviour
 
     public void Update()
     {
+        if (!TurnSystemController.Instance.IsPlayerTurn) {
+            return;
+        }
         CheckForMovementStart();
     }
 
     public void FixedUpdate()
     {
-        // body.velocity = move * speed;
+        if (!TurnSystemController.Instance.IsPlayerTurn) {
+            return;
+        }
         if (isMoving) {
             HandleMovement();
         }
