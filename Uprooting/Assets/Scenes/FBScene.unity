@@ -123,19 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &284357574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 305463465553820329, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
-  m_PrefabInstance: {fileID: 875487903}
-  m_PrefabAsset: {fileID: 0}
---- !u!81 &284357577
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284357574}
-  m_Enabled: 1
 --- !u!1001 &464500023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,8 +305,7 @@ PrefabInstance:
       propertyPath: startPosition.y
       value: -5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 305463465610192930, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 854e894fc7c3e4548ae1a8e4968af0ee, type: 3}
 --- !u!4 &954206242 stripped
 Transform:
@@ -376,6 +362,26 @@ PrefabInstance:
     - target: {fileID: 5254668649798527853, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 437fa60e6ed2eab4f83e81bcc5f22dff, type: 3}
+    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
+      propertyPath: sounds.Array.data[4].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: CarrotGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
+      propertyPath: sounds.Array.data[4].volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5254668649798527859, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
       propertyPath: m_Name
