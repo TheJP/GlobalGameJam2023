@@ -27,16 +27,5 @@ public class Tunnel : MonoBehaviour
         spriteRenderer.sprite = sprite;
         spriteRenderer.color = background.color;
     }
-
-    /// <summary>
-    /// Fills the tunnel with dirt.
-    /// </summary>
-    /// The tunnel tile will be replaced with a dirt tile.
-    /// <returns>The newly created tile</returns>
-    public Tile FillWithDirt()
-    {
-        var newTile = tile.Tilemap.ReplaceTile(tile.Location, tile.Tilemap.DirtTilePrefab);
-        Debug.Assert(newTile != null, "filling tunnel with dirt failed unexpectedly");
-        return newTile;
-    }
+    
 }

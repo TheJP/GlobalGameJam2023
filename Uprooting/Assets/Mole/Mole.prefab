@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 305463465553820245}
   - component: {fileID: 305463465553820330}
   - component: {fileID: 40317109}
+  - component: {fileID: 3347086978220809643}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -89,6 +90,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 4cc9199b22255974587a1bcc12da231f, type: 2}
+--- !u!81 &3347086978220809643
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305463465553820329}
+  m_Enabled: 1
 --- !u!1 &305463465610192928
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +109,6 @@ GameObject:
   - component: {fileID: 305463465610192931}
   - component: {fileID: 305463465610192943}
   - component: {fileID: 3541049629855029347}
-  - component: {fileID: 305463465610192930}
   - component: {fileID: 491416315}
   m_Layer: 0
   m_Name: Mole
@@ -156,14 +164,6 @@ MonoBehaviour:
   postProcessing: {fileID: 2100000, guid: 4cc9199b22255974587a1bcc12da231f, type: 2}
   radiusNoOxygen: 0.6
   animationDuration: 1
---- !u!81 &305463465610192930
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305463465610192928}
-  m_Enabled: 1
 --- !u!114 &491416315
 MonoBehaviour:
   m_ObjectHideFlags: 0

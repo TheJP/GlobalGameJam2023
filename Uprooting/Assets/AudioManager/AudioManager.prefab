@@ -46,13 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Dig
-    clip: {fileID: 8300000, guid: 81b1b12ccf92e7b41afe2dae9dfa2346, type: 3}
+    clip: {fileID: 8300000, guid: 0081868d104917f4c9b11e828d83cbe5, type: 3}
     volume: 0.381
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Tractor
-    clip: {fileID: 8300000, guid: 18fdc0c820a9a014b89b04aa2711ff9f, type: 3}
+    clip: {fileID: 8300000, guid: 57ca9845d6ed09642907aa2226bf981a, type: 3}
     volume: 0.391
     pitch: 1
     loop: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Climb
-    clip: {fileID: 8300000, guid: 1e39a23142890af47af05a2f73aaf0ca, type: 3}
+    clip: {fileID: 8300000, guid: b2327dd20337a7340a063891df3584f8, type: 3}
     volume: 1
     pitch: 1
     loop: 1
