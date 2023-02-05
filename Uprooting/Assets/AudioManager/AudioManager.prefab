@@ -53,6 +53,18 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Tractor
     clip: {fileID: 8300000, guid: 18fdc0c820a9a014b89b04aa2711ff9f, type: 3}
+    volume: 0.391
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Snore
+    clip: {fileID: 8300000, guid: f9cd8a60c327e144881f3aa873019c1f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Climb
+    clip: {fileID: 8300000, guid: 1e39a23142890af47af05a2f73aaf0ca, type: 3}
     volume: 1
     pitch: 1
     loop: 1

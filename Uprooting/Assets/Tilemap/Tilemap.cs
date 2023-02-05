@@ -72,6 +72,9 @@ public class Tilemap : MonoBehaviour
         foreach (var tile in tiles.Values)
         {
             tile.UpdateWalkable();
+            if (tile.IsGrowable) {
+                Debug.Log($"Tile {tile.Location} is growable!: {GetGrowableTiles().Count}");
+            }
         }
     }
 

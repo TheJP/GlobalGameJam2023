@@ -6,29 +6,35 @@ using UnityEngine.Serialization;
 public class GrowablePlant : MonoBehaviour {
     
     [SerializeField]
-    private Sprite[] spriteGrowthStages;
-    
+    private Sprite plantSprite;
+
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     
-    private int FullGrownStage => spriteGrowthStages.Length - 1;
+    [SerializeField]
+    private int growthStagesCount = 3;
     
-    private int growTimer = 0;
+    [SerializeField]
+    private float minScale = 0.5f;
+
+    private float CurrentScale => Mathf.Lerp(minScale, 1f, _currGrowthStage / (float)(growthStagesCount - 1));
+
+    private int _currGrowthStage = 0;
 
     
     public void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        if (spriteGrowthStages is { Length: > 0 }) {
-            spriteRenderer.sprite = spriteGrowthStages[0];
-        }
+        spriteRenderer.sprite = plantSprite ? plantSprite : spriteRenderer.sprite;
+        transform.localScale = Vector3.one * CurrentScale;
 
         TurnSystemController.Instance.OnEnemyTurnEnd += Grow;
     }
 
     private void Grow(object sender, EventArgs args) {
-        spriteRenderer.sprite = spriteGrowthStages[++growTimer];
-        if (growTimer >= FullGrownStage) {
+        _currGrowthStage++;
+        transform.localScale = Vector3.one * CurrentScale;
+
+        if (_currGrowthStage == growthStagesCount - 1) {
             TurnSystemController.Instance.OnEnemyTurnEnd -= Grow;
         }
     }
