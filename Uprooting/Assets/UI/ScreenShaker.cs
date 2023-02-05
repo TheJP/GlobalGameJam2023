@@ -55,11 +55,13 @@ public class ScreenShaker : MonoBehaviour
         {
             shakeDuration = 0f;
             transform.localPosition = initialPosition;
+            AudioManager.Instance.StopAudio("CaveIn");
         }
     }
     
     public void TriggerShake(float strength = 1) {
         shakeDuration = 0.5f;
         currShakeMagnitude = TotalShakeMagnitude * strength;
+        AudioManager.Instance.PlayAudio("CaveIn");
     }
 }

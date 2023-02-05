@@ -120,7 +120,6 @@ public class Mole : MonoBehaviour
             nextTile = nextTile.DigTunnel();
             Assert.IsNotNull(nextTile, "new Tile after digging is null!");
             AudioManager.Instance.StopAudio("Dig");
-            //AudioManager.Instance.StopAudio("Eating");
         }
         if (!CurrentTile.AllowsAirflow) {
             // stop heartbeat sound
