@@ -33,8 +33,18 @@
     color: rgba(179, 19, 25, 255);
 }
 
+.carrot-box {
+    align-items: center;
+}
+
+.carrots-label {
+    color: rgba(210, 101, 0, 255);
+    font-size: 40px;
+}
+
 .actions-box {
     align-items: center;
+    margin-top: 15px;
 }
 
 .actions-labels {

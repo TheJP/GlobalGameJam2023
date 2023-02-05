@@ -5,6 +5,10 @@
             <ui:VisualElement name="no-oxygen" class="no-oxygen-box">
                 <ui:Label text="Oxygen&#10;Low!" display-tooltip-when-elided="true" class="label no-oxygen-label" />
             </ui:VisualElement>
+            <ui:VisualElement class="carrot-box">
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/veggies-1.png?fileID=2800000&amp;guid=5aa67eeb574bf0c459e9bb68b4f9f415&amp;type=3#veggies-1&apos;); width: 100px; height: 100px;" />
+                <ui:Label text="99" display-tooltip-when-elided="true" name="carrots-label" class="carrots-label" />
+            </ui:VisualElement>
             <ui:VisualElement class="actions-box">
                 <ui:Label text="Actions" display-tooltip-when-elided="true" class="actions-labels label" />
                 <ui:Label text="99" display-tooltip-when-elided="true" name="actions" class="actions" />
