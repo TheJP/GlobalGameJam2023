@@ -7,10 +7,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Mole : MonoBehaviour
 {
-    
+
     public static Mole Instance { get; private set; }
 
     public int Points { get; private set; } = 0;
@@ -21,11 +22,16 @@ public class Mole : MonoBehaviour
     [SerializeField]
     [Tooltip("Max speed of mole in units per second.")]
     private float speed = 1f;
+    
+    [FormerlySerializedAs("carrotEatingTime")] [SerializeField]
+    private float eatingTime = 1f;
+    private float currEatingTime = 0f;
+    public bool IsEating => currEatingTime > 0f;
 
     private Vector2 currMoveInputDirection;
     private bool diggingInput = false;
 
-    private bool isMoving = false;
+    public bool IsMoving { get; private set; } = false;
     private MovementType movementType = MovementType.None;
     private float movementPercent = 0f;
     private Tile currTile;
@@ -65,7 +71,11 @@ public class Mole : MonoBehaviour
         if (!TurnSystemController.Instance.IsPlayerTurn) {
             return;
         }
-        if (isMoving) {
+        if (IsEating) {
+            currEatingTime -= Time.deltaTime;
+            return;
+        }
+        if (IsMoving) {
             HandleMovement();
         }
         
@@ -89,7 +99,7 @@ public class Mole : MonoBehaviour
         movementType = MovementType.None;
         movementPercent = 0f;
         currTile = nextTile;
-        isMoving = false;
+        IsMoving = false;
         EndAnimation();
     }
 
@@ -103,7 +113,7 @@ public class Mole : MonoBehaviour
     }
 
     private void CheckForMovementStart() {
-        if (isMoving) return;
+        if (IsMoving || IsEating) return;
         if (currMoveInputDirection == Vector2.zero) return;
 
         var moveDirectionInt = (Mathf.RoundToInt(currMoveInputDirection.x), Mathf.RoundToInt(currMoveInputDirection.y));
@@ -150,13 +160,14 @@ public class Mole : MonoBehaviour
         nextTile.DigOutPlant();
         Points += plant.Points;
         
+        currEatingTime = eatingTime;
     }
 
     private void StartMovement(Tile nextTile) {
         StartAnimation();
         
         this.nextTile = nextTile;
-        isMoving = true;
+        IsMoving = true;
     }
 
     private void OnDrawGizmos() {
