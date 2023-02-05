@@ -110,7 +110,7 @@ public class TurnSystemController : MonoBehaviour {
      * Returns true if the movement can be performed (enough movement points), false otherwise.
      */
     public bool CanDoMovement(MovementType movementType) {
-        return CurrentMovementLeft >= MovementHandler.MovementCosts[movementType];
+        return CurrentMovementLeft >= MovementHandler.MovementCosts[movementType] * (!Mole.Instance.CurrentTile.AllowsAirflow ? 2 : 1);
     }
 
     /**
@@ -120,7 +120,7 @@ public class TurnSystemController : MonoBehaviour {
         if (!CanDoMovement(movementType)) {
             return false;
         }
-        CurrentMovementLeft -= MovementHandler.MovementCosts[movementType];
+        CurrentMovementLeft -= MovementHandler.MovementCosts[movementType] * (!Mole.Instance.CurrentTile.AllowsAirflow ? 2 : 1);
         return true;
     }
 

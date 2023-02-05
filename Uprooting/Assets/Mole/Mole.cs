@@ -122,6 +122,9 @@ public class Mole : MonoBehaviour
             AudioManager.Instance.StopAudio("Dig");
             //AudioManager.Instance.StopAudio("Eating");
         }
+        if (!CurrentTile.AllowsAirflow) {
+            // stop heartbeat sound
+        }
         movementType = MovementType.None;
         movementPercent = 0f;
         currTile = nextTile;
@@ -192,6 +195,9 @@ public class Mole : MonoBehaviour
     }
 
     private void StartMovement(Tile nextTile) {
+        if (!CurrentTile.AllowsAirflow) {
+            // start heartbeat
+        }
         StartAnimation();
         
         this.nextTile = nextTile;
