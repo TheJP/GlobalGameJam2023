@@ -60,6 +60,16 @@ public class Mole : MonoBehaviour
         }
         nextTile = currTile;
         transform.position = new Vector3(currTile.Location.x, currTile.Location.y, 0);
+
+        GetComponent<MoleOxygen>().HasOxygenChanged += oxygen => {
+            if (oxygen.HasOxygen) {
+                AudioManager.Instance.PlayAudio("Heartbeat");
+            }
+            else {
+                AudioManager.Instance.StopAudio("Heartbeat");
+
+            }
+        };
     }
 
     public void Update()
@@ -120,9 +130,6 @@ public class Mole : MonoBehaviour
             nextTile = nextTile.DigTunnel();
             Assert.IsNotNull(nextTile, "new Tile after digging is null!");
             AudioManager.Instance.StopAudio("Dig");
-        }
-        if (!CurrentTile.AllowsAirflow) {
-            // stop heartbeat sound
         }
         movementType = MovementType.None;
         movementPercent = 0f;
@@ -195,9 +202,6 @@ public class Mole : MonoBehaviour
     }
 
     private void StartMovement(Tile nextTile) {
-        if (!CurrentTile.AllowsAirflow) {
-            // start heartbeat
-        }
         StartAnimation();
         
         this.nextTile = nextTile;
