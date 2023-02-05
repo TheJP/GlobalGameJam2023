@@ -8,6 +8,7 @@ namespace TurnBasedSystem {
             {MovementType.Climb, 2},
             {MovementType.EasyClimb, 1},
             {MovementType.DigMovement, 1},
+            {MovementType.FallDownMovement, 0},
         };
     }
     
@@ -17,5 +18,6 @@ namespace TurnBasedSystem {
         Climb,
         EasyClimb,
         DigMovement,
+        FallDownMovement
     }
 }

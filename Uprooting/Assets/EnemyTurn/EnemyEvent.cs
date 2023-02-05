@@ -82,6 +82,10 @@ public class TractorEvent : EnemyEvent {
                 }
             }
         }
+
+        if (Mole.Instance.CurrentTile.Location.x == tileX) {
+            Mole.Instance.FallDown();
+        }
     }
 
     public override void TurnEndAction() {

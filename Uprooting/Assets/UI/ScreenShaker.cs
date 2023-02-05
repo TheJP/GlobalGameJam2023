@@ -6,13 +6,14 @@ public class ScreenShaker : MonoBehaviour
 {
     // https://medium.com/nice-things-ios-android-development/basic-2d-screen-shake-in-unity-9c27b56b516
     // Transform of the GameObject you want to shake
-    private Transform transform;
+    private new Transform transform;
  
     // Desired duration of the shake effect
     private float shakeDuration = 0f;
  
     // A measure of magnitude for the shake. Tweak based on your preference
-    private float shakeMagnitude = 0.2f;
+    private float TotalShakeMagnitude = 0.2f;
+    private float currShakeMagnitude = 0.2f;
  
     // A measure of how quickly the shake effect should evaporate
     private float dampingSpeed = 1.0f;
@@ -46,7 +47,7 @@ public class ScreenShaker : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
-            transform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
+            transform.localPosition = initialPosition + Random.insideUnitSphere * currShakeMagnitude;
    
             shakeDuration -= Time.deltaTime * dampingSpeed;
         }
@@ -58,8 +59,9 @@ public class ScreenShaker : MonoBehaviour
         }
     }
     
-    public void TriggerShake() {
+    public void TriggerShake(float strength = 1) {
         shakeDuration = 0.5f;
+        currShakeMagnitude = TotalShakeMagnitude * strength;
         AudioManager.Instance.PlayAudio("CaveIn");
     }
 }
