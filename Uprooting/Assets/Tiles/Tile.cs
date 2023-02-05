@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public bool IsGrowable => Location.y == -1 && IsSolid; // TODO set to the layer of the ground
+    public bool IsGrowable => Location.y == 0 && IsSolid; // TODO set to the layer of the ground
     public GrowablePlant currGrowablePlant = null;
 
 
@@ -175,5 +175,14 @@ public class Tile : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void DigOutPlant() {
+        if (currGrowablePlant == null) {
+            Debug.LogError("Should not dig out plant on tile without plant!");
+            return;
+        }
+        Destroy(currGrowablePlant.gameObject);
+        currGrowablePlant = null;
     }
 }
