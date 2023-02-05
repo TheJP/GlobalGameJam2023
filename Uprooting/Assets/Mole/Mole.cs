@@ -133,6 +133,17 @@ public class Mole : MonoBehaviour
     public void StartAnimation() {
         bool isFacingRight = (currMoveInputDirection.x > 0);
         spriteRenderer.flipX = isFacingRight;
+
+        Vector3 rotationForVerticalMove = Vector3.zero;
+        bool isFacingDown = (currMoveInputDirection.y < 0);
+        bool isFacingUp = (currMoveInputDirection.y > 0);
+        if (isFacingUp) {
+            rotationForVerticalMove.z = -90;
+        } else if (isFacingDown) {
+            rotationForVerticalMove.z = 90; 
+        }
+        spriteRenderer.transform.eulerAngles = rotationForVerticalMove;
+        
         animator.SetBool("isDigging", true);
     }
     
