@@ -33,6 +33,9 @@ public class Tilemap : MonoBehaviour
 
     [SerializeField]
     private int dirtColumns = 60;
+    
+    public int Width => dirtColumns;
+    public int Height => dirtRows;
 
     public event Action<(int x, int y)> TileChanged;
 

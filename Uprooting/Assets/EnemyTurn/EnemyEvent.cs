@@ -6,7 +6,9 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public abstract class EnemyEvent {
-    
+
+    public abstract float GetProgress();
+
     public static readonly Dictionary<EnemyEvent, int> EventsAndWeight = new () {
         { new IdleEvent(), 1 },
         { new TractorSeedEvent(), 10 },
@@ -19,6 +21,8 @@ public abstract class EnemyEvent {
 }
 
 public class IdleEvent : EnemyEvent {
+    
+    public override float GetProgress() => _timeElapsed / duration;
     
     private const float duration = 3f;
     private float _timeElapsed = 0f;
@@ -39,9 +43,11 @@ public class IdleEvent : EnemyEvent {
 
 public abstract class TractorEvent : EnemyEvent {
     
-    private const float TractorSpeed = 3f;
+    private const float TractorSpeed = 10f;
     private const float startX = 0f;
-    private const float endX = 20f;
+    private float endX => Tilemap.Instance.Width;
+    
+    public override float GetProgress() => _tractor.transform.position.x / endX;
     
     private GameObject _tractor;
 
@@ -52,8 +58,25 @@ public abstract class TractorEvent : EnemyEvent {
     }
     
     public override bool TurnUpdateAction(float deltaTime) {
+        var currX = _tractor.transform.position.x;
         _tractor.transform.Translate(deltaTime * TractorSpeed, 0, 0);
+        var newX = _tractor.transform.position.x;
+        if (Mathf.RoundToInt(currX) != Mathf.RoundToInt(newX)) {
+            TractorMovedToNextTile(Mathf.RoundToInt(newX));
+        }
+        
         return _tractor.transform.position.x > endX;
+    }
+
+    private void TractorMovedToNextTile(int tileX) {
+        for (int y = -Tilemap.Instance.Height + 2; y < 0; y++) {
+            if (Tilemap.Instance.TryGetTile(tileX, y, out var tile)) {
+                if (tile.MaybeDoCavein()) {
+                    // TODO maybe screenshake, or cavein sound
+                }
+                
+            }
+        }
     }
 
     public override void TurnEndAction() {

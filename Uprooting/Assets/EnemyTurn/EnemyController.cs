@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour {
         Instance = this;
     }
 
+    public float Progress => currentEvent?.GetProgress() ?? -1;
     private EnemyEvent currentEvent = null;
 
     public void StartTurn() {
