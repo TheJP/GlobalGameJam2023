@@ -10,6 +10,9 @@ using UnityEngine.InputSystem;
 
 public class Mole : MonoBehaviour
 {
+    
+    public static Mole Instance { get; private set; }
+    
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     
@@ -27,6 +30,15 @@ public class Mole : MonoBehaviour
     private Tile nextTile;
 
     public Tile CurrentTile => currTile;
+
+    private void Awake() {
+        if (Instance != null) {
+            Destroy(gameObject);
+            Debug.LogError("Multiple Mole instances detected. Destroying duplicate.");
+            return;
+        }
+        Instance = this;
+    }
 
     public void Start() {
         var startPosition = (x: Mathf.RoundToInt(transform.position.x), y: Mathf.RoundToInt(transform.position.y));

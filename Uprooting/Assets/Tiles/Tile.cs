@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tile : MonoBehaviour
 {
@@ -44,6 +45,18 @@ public class Tile : MonoBehaviour
         }
         var newTile = Tilemap.ReplaceTile(Location, Tilemap.TunnelTilePrefab);
         Debug.Assert(newTile != null, "tunnel digging failed unexpectedly");
+        return newTile;
+    }
+    
+    /// <summary>
+    /// Fills the tunnel with dirt.
+    /// </summary>
+    /// The tunnel tile will be replaced with a dirt tile.
+    /// <returns>The newly created tile</returns>
+    public Tile FillWithDirt()
+    {
+        var newTile = Tilemap.ReplaceTile(Location, Tilemap.DirtTilePrefab);
+        Debug.Assert(newTile != null, "filling tunnel with dirt failed unexpectedly");
         return newTile;
     }
 
@@ -143,5 +156,24 @@ public class Tile : MonoBehaviour
         }
         currGrowablePlant = Instantiate(Tilemap.CarrotPrefab, transform); // TODO here different plants can be spawned
         currGrowablePlant.transform.position = new Vector3(CenterLocation.x, CenterLocation.y, -1);
+    }
+
+    /// <summary>
+    /// Does a cavein with a certain probability. (higher probability, the wider the ceiling is (and only if it is below a ceiling))
+    /// </summary>
+    public bool MaybeDoCavein() {
+        if (IsSolid ||
+            (TryGetNeighbour((0, -1), out var lowerNeighbour) && !lowerNeighbour.IsSolid)
+            || Mole.Instance.CurrentTile.Location == this.Location) {
+            return false;
+        }
+        
+        var caveinProbability = 0.5f; // todo add higher probability for wider ceilings
+        if (Random.value < caveinProbability) {
+            FillWithDirt();
+            return true;
+        }
+
+        return false;
     }
 }
