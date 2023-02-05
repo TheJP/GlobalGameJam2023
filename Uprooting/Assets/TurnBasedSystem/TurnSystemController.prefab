@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578388c334df0498995b564924b88dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PlayerAPPerTurn>k__BackingField: 6
+  <PlayerMovementPerTurn>k__BackingField: 20

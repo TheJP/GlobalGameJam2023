@@ -3,7 +3,7 @@ using TurnBasedSystem;
 using UnityEngine;
 
 public class TurnSystemController : MonoBehaviour {
-    [field: SerializeField] public int PlayerAPPerTurn { get; private set; } = 10;
+    [field: SerializeField] public int PlayerAPPerTurn { get; private set; } = 6;
     [field: SerializeField] public int PlayerMovementPerTurn { get; private set; } = 20;
 
     public int TurnCount { get; private set; } = 0;
@@ -85,7 +85,7 @@ public class TurnSystemController : MonoBehaviour {
      * Returns true if the action can be performed (enough AP), false otherwise.
      */
     public bool CanDoAction(ActionType actionType) {
-        return CurrentAPLeft >= ActionHandler.ActionCosts[actionType];
+        return CurrentAPLeft >= ActionHandler.ActionCosts[actionType] * (!Mole.Instance.CurrentTile.AllowsAirflow ? 2 : 1);
     }
 
     /**
@@ -95,7 +95,7 @@ public class TurnSystemController : MonoBehaviour {
         if (!CanDoAction(actionType)) {
             return false;
         }
-        CurrentAPLeft -= ActionHandler.ActionCosts[actionType];
+        CurrentAPLeft -= ActionHandler.ActionCosts[actionType] * (!Mole.Instance.CurrentTile.AllowsAirflow ? 2 : 1);
         return true;
     }
 
