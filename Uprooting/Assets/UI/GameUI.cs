@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class GameUI : MonoBehaviour
 {
+    private Label carrots;
     private Label actions;
     private VisualElement movement;
     private ProgressBar enemyProgress;
@@ -14,6 +15,7 @@ public class GameUI : MonoBehaviour
     {
         var ui = GetComponent<UIDocument>();
         var noOxygen = ui.rootVisualElement.Q("no-oxygen");
+        carrots = ui.rootVisualElement.Q<Label>("carrots-label");
         actions = ui.rootVisualElement.Q<Label>("actions");
         movement = ui.rootVisualElement.Q("movement");
         var nextRound = ui.rootVisualElement.Q<Button>("next-round");
@@ -22,7 +24,7 @@ public class GameUI : MonoBehaviour
 
         FindObjectOfType<MoleOxygen>().HasOxygenChanged +=
             mole => noOxygen.style.display = mole.HasOxygen ? DisplayStyle.None : DisplayStyle.Flex;
-        nextRound.RegisterCallback<ClickEvent>(e => TurnSystemController.Instance.EndPlayerTurn());
+        nextRound.clicked += () => TurnSystemController.Instance.EndPlayerTurn();
 
         TurnSystemController.Instance.OnPlayerTurnEnd += (o, e) => enemyBox.style.display = DisplayStyle.Flex;
         TurnSystemController.Instance.OnEnemyTurnEnd += (o, e) => enemyBox.style.display = DisplayStyle.None;
@@ -30,7 +32,9 @@ public class GameUI : MonoBehaviour
 
     public void Update()
     {
+        carrots.text = $"{Mole.Instance.Points}";
         actions.text = $"{TurnSystemController.Instance.CurrentAPLeft}";
+
         var movementHeight = (float)TurnSystemController.Instance.CurrentMovementLeft /
             (float)TurnSystemController.Instance.PlayerMovementPerTurn;
         movement.style.height = new StyleLength(Length.Percent(movementHeight * 100f));

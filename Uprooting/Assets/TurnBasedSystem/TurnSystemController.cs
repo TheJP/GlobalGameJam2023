@@ -47,7 +47,7 @@ public class TurnSystemController : MonoBehaviour {
 
     public void EndPlayerTurn()
     {
-        if (!IsPlayerTurn)
+        if (!IsPlayerTurn || Mole.Instance.IsMoving || Mole.Instance.IsEating)
         {
             return;
         }
