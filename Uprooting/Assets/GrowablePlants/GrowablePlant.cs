@@ -33,14 +33,20 @@ public class GrowablePlant : MonoBehaviour {
     }
 
     private void Grow(object sender, EventArgs args) {
-        if (_hasJustBeenPlanted) {
-            _hasJustBeenPlanted = false;
-            return;
-        }
-        _currGrowthStage++;
-        transform.localScale = Vector3.one * CurrentScale;
+        try {
+            if (_hasJustBeenPlanted) {
+                _hasJustBeenPlanted = false;
+                return;
+            }
 
-        if (_currGrowthStage == growthStagesCount - 1) {
+            _currGrowthStage++;
+            transform.localScale = Vector3.one * CurrentScale;
+
+            if (_currGrowthStage == growthStagesCount - 1) {
+                TurnSystemController.Instance.OnEnemyTurnEnd -= Grow;
+            }
+        } catch (Exception e) {
+            Debug.LogException(e);
             TurnSystemController.Instance.OnEnemyTurnEnd -= Grow;
         }
     }
