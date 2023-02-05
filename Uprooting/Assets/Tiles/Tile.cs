@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -159,22 +160,33 @@ public class Tile : MonoBehaviour
     }
 
     /// <summary>
-    /// Does a cavein with a certain probability. (higher probability, the wider the ceiling is (and only if it is below a ceiling))
+    /// Does a cavein with a certain probability. (higher probability, the higher the tile (and only if it is below a ceiling))
     /// </summary>
     public bool MaybeDoCavein() {
         if (IsSolid ||
             (TryGetNeighbour((0, -1), out var lowerNeighbour) && !lowerNeighbour.IsSolid)
-            || Mole.Instance.CurrentTile.Location == this.Location) {
+            || Mole.Instance.CurrentTile.Location == this.Location
+            || !HasCeiling()) {
             return false;
         }
-        
-        var caveinProbability = 0.2f; // todo add higher probability for wider ceilings
+
+        var caveinProbability = Location.y switch {
+            -1 => 0.4f,
+            -2 => 0.3f,
+            -3 => 0.2f,
+            _ => 0.1f
+        };
         if (Random.value < caveinProbability) {
             FillWithDirt();
+            ScreenShaker.Instance.TriggerShake();
             return true;
         }
 
         return false;
+    }
+
+    public bool HasCeiling() {
+        return true; // TODO
     }
 
     public void DigOutPlant() {
@@ -183,6 +195,7 @@ public class Tile : MonoBehaviour
             return;
         }
         Destroy(currGrowablePlant.gameObject);
+        currGrowablePlant.HasBeenDestroyed();
         currGrowablePlant = null;
     }
 }
