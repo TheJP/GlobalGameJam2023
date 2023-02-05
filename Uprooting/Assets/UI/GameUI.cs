@@ -12,10 +12,13 @@ public class GameUI : MonoBehaviour
     public void Start()
     {
         var ui = GetComponent<UIDocument>();
+        var noOxygen = ui.rootVisualElement.Q("no-oxygen");
         actions = ui.rootVisualElement.Q<Label>("actions");
         movement = ui.rootVisualElement.Q("movement");
         var nextRound = ui.rootVisualElement.Q<Button>("next-round");
 
+        FindObjectOfType<MoleOxygen>().HasOxygenChanged +=
+            mole => noOxygen.style.display = mole.HasOxygen ? DisplayStyle.None : DisplayStyle.Flex;
         nextRound.RegisterCallback<ClickEvent>(e => TurnSystemController.Instance.EndPlayerTurn());
     }
 
