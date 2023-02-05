@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public bool IsGrowable => Location.y == -1 && IsSolid; // TODO set to the layer of the ground
+    public bool IsGrowable => Location.y == 0 && IsSolid; // TODO set to the layer of the ground
     public GrowablePlant currGrowablePlant = null;
 
 

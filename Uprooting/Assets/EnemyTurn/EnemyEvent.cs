@@ -11,7 +11,7 @@ public abstract class EnemyEvent {
 
     public static readonly Dictionary<EnemyEvent, int> EventsAndWeight = new () {
         { new IdleEvent(), 1 },
-        { new TractorSeedEvent(), 10 },
+        { new TractorEvent(), 10 },
     };
 
     public abstract void TurnStartAction();
@@ -41,8 +41,9 @@ public class IdleEvent : EnemyEvent {
     }
 }
 
-public abstract class TractorEvent : EnemyEvent {
-    
+public class TractorEvent : EnemyEvent {
+    private const float SeedSpawnChance = 0.2f; 
+
     private const float TractorSpeed = 10f;
     private const float startX = 0f;
     private float endX => Tilemap.Instance.Width;
@@ -69,12 +70,16 @@ public abstract class TractorEvent : EnemyEvent {
     }
 
     private void TractorMovedToNextTile(int tileX) {
-        for (int y = -Tilemap.Instance.Height + 2; y < 0; y++) {
+        for (int y = -Tilemap.Instance.Height + 2; y <= 0; y++) {
             if (Tilemap.Instance.TryGetTile(tileX, y, out var tile)) {
-                if (tile.MaybeDoCavein()) {
+                if (tile.IsGrowable) {
+                    if (Random.value < SeedSpawnChance) {
+                        tile.SpawnSeed();
+                    }
+                }
+                else if (tile.MaybeDoCavein()) {
                     // TODO maybe screenshake, or cavein sound
                 }
-                
             }
         }
     }
@@ -85,18 +90,6 @@ public abstract class TractorEvent : EnemyEvent {
     }
 }
 
-public class TractorSeedEvent : TractorEvent {
-    private const float SeedSpawnChance = 0.3f; 
-    public override void TurnEndAction() {
-        base.TurnEndAction();
-
-        foreach (var growableTile in Tilemap.Instance.GetGrowableTiles()) {
-            if (Random.value < SeedSpawnChance) {
-                growableTile.SpawnSeed();
-            }
-        }
-    }
-}
 
 
 
