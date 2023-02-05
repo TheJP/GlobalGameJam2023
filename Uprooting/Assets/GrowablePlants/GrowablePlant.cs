@@ -20,6 +20,7 @@ public class GrowablePlant : MonoBehaviour {
     private float CurrentScale => Mathf.Lerp(minScale, 1f, _currGrowthStage / (float)(growthStagesCount - 1));
 
     private int _currGrowthStage = 0;
+    private bool _hasJustBeenPlanted = true;
 
     
     public void Start() {
@@ -31,6 +32,10 @@ public class GrowablePlant : MonoBehaviour {
     }
 
     private void Grow(object sender, EventArgs args) {
+        if (_hasJustBeenPlanted) {
+            _hasJustBeenPlanted = false;
+            return;
+        }
         _currGrowthStage++;
         transform.localScale = Vector3.one * CurrentScale;
 
