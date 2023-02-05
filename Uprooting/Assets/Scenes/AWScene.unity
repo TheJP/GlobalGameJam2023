@@ -363,58 +363,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[4].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[5].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: cd87cab75110c744e902d48456eb6489, type: 3}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[6].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[6].name
-      value: CaveIn
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[7].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8ca33d1229476724ea12a32825306167, type: 3}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[7].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[7].name
-      value: Snore
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[6].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[7].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[6].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5254668649798527858, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
-      propertyPath: sounds.Array.data[7].volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5254668649798527859, guid: 086934ae64e4049108cc40df3068a47c, type: 3}
       propertyPath: m_Name
       value: AudioManager
