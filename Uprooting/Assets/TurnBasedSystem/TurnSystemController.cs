@@ -60,7 +60,7 @@ public class TurnSystemController : MonoBehaviour {
 
     private void StartEnemyTurn() {
         // TODO: Do stuff in enemy turn
-        EndEnemyTurn();
+        EnemyController.Instance.StartTurn();
     }
     
     public void EndEnemyTurn() {

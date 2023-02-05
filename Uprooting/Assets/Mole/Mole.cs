@@ -40,12 +40,17 @@ public class Mole : MonoBehaviour
 
     public void Update()
     {
+        if (!TurnSystemController.Instance.IsPlayerTurn) {
+            return;
+        }
         CheckForMovementStart();
     }
 
     public void FixedUpdate()
     {
-        // body.velocity = move * speed;
+        if (!TurnSystemController.Instance.IsPlayerTurn) {
+            return;
+        }
         if (isMoving) {
             HandleMovement();
         }
@@ -65,6 +70,7 @@ public class Mole : MonoBehaviour
         if (movementType == MovementType.DigMovement) {
             nextTile = nextTile.DigTunnel();
             Assert.IsNotNull(nextTile, "new Tile after digging is null!");
+            AudioManager.Instance.StopAudio("Dig");
         }
         movementType = MovementType.None;
         movementPercent = 0f;
@@ -104,6 +110,7 @@ public class Mole : MonoBehaviour
                 return;
             }
             // we have enough AP for digging and spent them
+            AudioManager.Instance.PlayAudio("Dig");
         }
         
         if (!TurnSystemController.Instance.TryDoMovement(movementType)) Debug.LogError("We should definitely have enough Movement Points");

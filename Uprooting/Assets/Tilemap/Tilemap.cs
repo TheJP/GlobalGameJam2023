@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TurnBasedSystem;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Tilemap : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class Tilemap : MonoBehaviour
 
     [field: SerializeField]
     public Tile TunnelTilePrefab { get; private set; }
+    
+    [field: SerializeField]
+    public GrowablePlant CarrotPrefab { get; private set; }
 
     [field: Header("Background")]
 
@@ -67,6 +72,9 @@ public class Tilemap : MonoBehaviour
         foreach (var tile in tiles.Values)
         {
             tile.UpdateWalkable();
+            if (tile.IsGrowable) {
+                Debug.Log($"Tile {tile.Location} is growable!: {GetGrowableTiles().Count}");
+            }
         }
     }
 
@@ -237,4 +245,9 @@ public class Tilemap : MonoBehaviour
         return false;
 
     }
+    
+    public List<Tile> GetGrowableTiles() {
+        return tiles.Values.Where(tile => tile.IsGrowable).ToList();
+    }
+
 }

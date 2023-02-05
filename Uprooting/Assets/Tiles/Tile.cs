@@ -29,6 +29,10 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public bool IsGrowable => Location.y == -1 && IsSolid; // TODO set to the layer of the ground
+    public GrowablePlant currGrowablePlant = null;
+
+
     public bool IsDiggable => GetComponent<Dirt>() != null;
 
     public Tile DigTunnel()
@@ -126,5 +130,18 @@ public class Tile : MonoBehaviour
             Gizmos.color = Color.clear;
         }
         Gizmos.DrawWireCube(CenterLocation, Vector2.one * 0.5f);
+    }
+
+    public void SpawnSeed() {
+        if (!IsGrowable) {
+            Debug.LogError("Should not spawn seed on non-growable tile!");
+            return;
+        }
+
+        if (currGrowablePlant != null) {
+            return; // there is already a plant
+        }
+        currGrowablePlant = Instantiate(Tilemap.CarrotPrefab, transform); // TODO here different plants can be spawned
+        currGrowablePlant.transform.position = new Vector3(CenterLocation.x, CenterLocation.y, -1);
     }
 }
