@@ -1,0 +1,22 @@
+#play:hover {
+    width: 280px;
+    height: 140px;
+}
+
+#play:active {
+    background-image: url('project://database/Assets/UI/PLAY-BUTTON2.png?fileID=2800000&guid=0ca3f98894943bd43965f49bc8842d5a&type=3#PLAY-BUTTON2');
+}
+
+.play {
+    font-size: 40px;
+    width: 250px;
+    background-color: rgba(88, 88, 88, 0);
+    background-image: url('project://database/Assets/UI/PLAY-BUTTON.png?fileID=2800000&guid=e9daec8f3c1fe5a45aeb7202c22c509a&type=3#PLAY-BUTTON');
+    height: 125px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    transition-property: all, height;
+    transition-duration: 0s, 0.2s;
+}
