@@ -68,7 +68,7 @@ public class Mole : MonoBehaviour
         movementPercent = 0f;
         currTile = nextTile;
         isMoving = false;
-        endAnimation();
+        EndAnimation();
     }
 
     public void OnMove(InputValue value)
@@ -111,8 +111,7 @@ public class Mole : MonoBehaviour
     }
 
     private void StartMovement(Tile nextTile) {
-        // TODO set animation variables here
-        startAnimation();
+        StartAnimation();
         
         this.nextTile = nextTile;
         isMoving = true;
@@ -129,13 +128,13 @@ public class Mole : MonoBehaviour
         Gizmos.DrawCube(currTile.CenterLocation, Vector3.one * 0.5f);
     }
 
-    public void startAnimation() {
+    public void StartAnimation() {
         bool isFacingRight = (currMoveInputDirection.x > 0);
         spriteRenderer.flipX = isFacingRight;
         animator.SetBool("isDigging", true);
     }
     
-    public void endAnimation() {
+    public void EndAnimation() {
         animator.SetBool("isDigging", false);
     }
 }
