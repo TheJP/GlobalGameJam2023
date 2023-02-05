@@ -155,7 +155,7 @@ public class Tile : MonoBehaviour
         if (currGrowablePlant != null) {
             return; // there is already a plant
         }
-        currGrowablePlant = Instantiate(Tilemap.CarrotPrefab, transform); // TODO here different plants can be spawned
+        currGrowablePlant = Instantiate(Tilemap.GetRandomCarrotPrefab(), transform); // TODO here different plants can be spawned
         currGrowablePlant.transform.position = new Vector3(CenterLocation.x, CenterLocation.y, -1);
     }
 

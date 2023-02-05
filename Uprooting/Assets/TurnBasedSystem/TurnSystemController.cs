@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnSystemController : MonoBehaviour {
     [field: SerializeField] public int PlayerAPPerTurn { get; private set; } = 10;
-    [field: SerializeField] public int PlayerMovementPerTurn { get; private set; } = 10;
+    [field: SerializeField] public int PlayerMovementPerTurn { get; private set; } = 20;
 
     public int TurnCount { get; private set; } = 0;
 
